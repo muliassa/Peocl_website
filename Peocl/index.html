@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peocl — Advanced capture systems for action parks</title>
-  <meta name="description" content="Peocl builds automatic photography and video capture systems for water parks and surf parks — on-slide cameras, wave capture, park photographers, and guest apps that sell the media.">
+  <meta name="description" content="Peocl builds photography and video capture systems for water parks and surf parks — on-slide cameras, wave capture, park photographers, and guest apps that sell the media.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%B8%3C/text%3E%3C/svg%3E">
   <style>
     :root {
@@ -55,6 +55,16 @@
     .card .icon { font-size: 26px; margin-bottom: 8px; }
     .card p { color: var(--ink2); font-size: 14.5px; }
 
+    .clips { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    @media (max-width: 680px) { .clips { grid-template-columns: 1fr; } }
+    .clip {
+      border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+      background: var(--bg-soft); margin: 0;
+    }
+    .clip video { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; background: var(--ink); }
+    .clip figcaption { padding: 10px 14px; font-size: 13.5px; color: var(--ink2); }
+    .section-note { color: var(--ink2); font-size: 15px; margin-bottom: 20px; max-width: 640px; }
+
     .deploy { display: flex; flex-direction: column; gap: 14px; }
     .deploy-row {
       display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
@@ -87,6 +97,7 @@
     <div class="logo">PE<span>O</span>CL</div>
     <nav>
       <a href="#what">What we do</a>
+      <a href="#footage">Footage</a>
       <a href="#deployments">Deployments</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -98,9 +109,9 @@
     <div class="kicker">Advanced park photography systems</div>
     <h1>Every ride. Every wave.<br>Captured, matched to the guest, and sold.</h1>
     <p>
-      Peocl builds automatic photo &amp; video capture systems for action parks —
-      water parks and surf parks. Our cameras identify the guest's wristband,
-      record the moment, and our apps deliver and sell the media the same day.
+      Peocl builds photo &amp; video capture systems for action parks —
+      water parks and surf parks. The guest scans their wristband at the ride,
+      our cameras record the moment, and our apps deliver and sell the media the same day.
     </p>
   </div>
 </div>
@@ -112,7 +123,7 @@
       <div class="card">
         <div class="icon">🎢</div>
         <h3>On-slide capture</h3>
-        <p>Camera rigs on water slides detect the rider's RFID wristband and record a full video of the run plus action photos — automatically, ride after ride.</p>
+        <p>The rider scans their RFID wristband at the slide station, and our camera rigs record a full video of the run plus action photos — ride after ride.</p>
       </div>
       <div class="card">
         <div class="icon">🏄</div>
@@ -122,13 +133,42 @@
       <div class="card">
         <div class="icon">📷</div>
         <h3>Park photographers</h3>
-        <p>Pro photographers with Canon gear roam the park; every shot is matched to the guest's wristband and appears in their app within minutes.</p>
+        <p>Pro photographers roam the park; every shot is matched to the guest's wristband and appears in their app within minutes.</p>
       </div>
       <div class="card">
         <div class="icon">📱</div>
         <h3>Guest apps &amp; payments</h3>
         <p>iOS, Android, and web apps where guests link their wristband, preview everything free, and unlock packages with secure in-app payment (Tranzila, PCI-DSS).</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="footage">
+  <div class="container">
+    <h2>Sample footage</h2>
+    <p class="section-note">
+      Straight from our wave capture system at SRF Park TLV: every wave a surfer
+      catches is filmed, auto-clipped, and matched to their session — these are
+      real, unedited clips exactly as guests receive them in the Surfai app.
+    </p>
+    <div class="clips">
+      <figure class="clip">
+        <video src="media/wave-1.mp4" controls preload="metadata" playsinline></video>
+        <figcaption>Wave clip · 10s — auto-captured and cut, no operator involved</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="media/wave-2.mp4" controls preload="metadata" playsinline></video>
+        <figcaption>Wave clip · 15s — full ride, pop-up to finish</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="media/wave-3.mp4" controls preload="metadata" playsinline></video>
+        <figcaption>Wave clip · 18s — 1080p H.264, ready to share</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="media/wave-4.mp4" controls preload="metadata" playsinline></video>
+        <figcaption>Wave clip · 14s — matched to the surfer's session hour</figcaption>
+      </figure>
     </div>
   </div>
 </section>

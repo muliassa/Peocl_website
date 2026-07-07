@@ -6,7 +6,7 @@
   <title>WaterCap — הזיכרונות שלכם מווטרלנד, ישר לנייד</title>
   <meta name="description" content="WaterCap מצלמת אתכם במגלשות ווטרלנד אילת ואצל הצלם בפארק — מקשרים את הצמיד, צופים בכל התמונות והסרטונים מהיום ופותחים אותם באפליקציה.">
   <meta property="og:title" content="WaterCap — Your Waterland memories, straight to your phone">
-  <meta property="og:description" content="Automatic on-slide videos and pro photographer shots at Waterland Eilat. Link your wristband, watch your day, unlock your memories.">
+  <meta property="og:description" content="On-slide ride videos and pro photographer shots at Waterland Eilat. Scan your wristband at the slide, link it in the app, watch your day, unlock your memories.">
   <meta property="og:url" content="https://watercap.peocl.com/">
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E">
@@ -188,6 +188,16 @@ h2 { font-size: clamp(24px, 4vw, 34px); font-weight: 800; color: var(--dark); te
 .product-card p { color: var(--text2); font-size: 15px; }
 .product-card ul { list-style: none; margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
 .product-card li { font-size: 15px; font-weight: 600; }
+
+/* photographer sample photos */
+.photog-gallery { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 16px; }
+@media (max-width: 480px) { .photog-gallery { grid-template-columns: 1fr; } }
+.photog-gallery img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+  border-radius: 10px; border: 1.5px solid var(--border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease; cursor: zoom-in;
+}
+.photog-gallery img:hover { transform: scale(1.04); box-shadow: 0 10px 26px rgba(0, 61, 107, 0.25); }
 
 /* packages */
 .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
@@ -397,8 +407,8 @@ h2 { position: relative; }
         <span class="en">The ride ends.<br>The memory lands on your phone.</span>
       </h1>
       <p class="hero-sub">
-        <span class="he">מצלמות במגלשות המים של ווטרלנד מתעדות אתכם אוטומטית, וצלם מקצועי עם Canon מסתובב בפארק. מקשרים את הצמיד — ומקבלים את כל התמונות והסרטונים של היום.</span>
-        <span class="en">Cameras on Waterland's water slides capture you automatically, and a pro photographer with a Canon roams the park. Link your wristband — and get every photo and video from your day.</span>
+        <span class="he">סורקים את הצמיד בעמדה שבמגלשה — והמצלמות שלנו מתעדות את הגלישה. בנוסף, צלם מקצועי מסתובב בפארק. מקשרים את הצמיד באפליקציה — ומקבלים את כל התמונות והסרטונים של היום.</span>
+        <span class="en">Scan your wristband at the slide station — and our cameras capture your ride. A pro photographer roams the park too. Link your wristband in the app — and get every photo and video from your day.</span>
       </p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="/app/">
@@ -462,9 +472,9 @@ h2 { position: relative; }
       <div class="step">
         <div class="step-icon">🎢</div>
         <div class="step-num">1</div>
-        <h3><span class="he">גולשים עם הצמיד</span><span class="en">Ride with your wristband</span></h3>
-        <p><span class="he">עונדים את צמיד הפארק וגולשים כרגיל. המצלמות שלנו במגלשות מזהות את הצמיד ומתעדות כל גלישה — וידאו מלא ותמונות מהמסלול ומהפסגה.</span>
-        <span class="en">Wear your park wristband and ride as usual. Our slide cameras detect the band and capture every run — a full video plus ride and top photos.</span></p>
+        <h3><span class="he">סורקים את הצמיד וגולשים</span><span class="en">Scan your wristband &amp; ride</span></h3>
+        <p><span class="he">עונדים את צמיד הפארק וסורקים אותו בעמדה שבכניסה למגלשה — ככה אנחנו יודעים באיזו מגלשה אתם. גולשים, והמצלמות מתעדות את הגלישה — וידאו מלא ותמונות מהמסלול ומהפסגה.</span>
+        <span class="en">Wear your park wristband and scan it at the station by the slide entrance — that's how we know which slide you're on. Ride, and our cameras capture the run — a full video plus ride and top photos.</span></p>
       </div>
       <div class="step">
         <div class="step-icon">📡</div>
@@ -496,7 +506,7 @@ h2 { position: relative; }
         <p><span class="he">מערכת המצלמות שלנו מותקנת על מגלשות ווטרלנד — מהקמיקזה בגובה 24 מטר ועד מגלשות האבובים המשפחתיות. כל גלישה הופכת לכרטיס משלו באפליקציה:</span>
         <span class="en">Our camera rigs live on Waterland's slides — from the 24-meter Kamikaze to the family tube slides. Every run becomes its own card in the app:</span></p>
         <ul>
-          <li><span class="he">🎬 סרטון ריל מלא של הגלישה</span><span class="en">🎬 A full reel video of the ride</span></li>
+          <li><span class="he">🎬 סרטון מלא של הגלישה</span><span class="en">🎬 A full video of the ride</span></li>
           <li><span class="he">📸 תמונת אקשן מהמסלול + תמונה מהפסגה</span><span class="en">📸 An action shot on the slide + a top-of-slide photo</span></li>
           <li><span class="he">🕐 שעת הגלישה והמגלשה — כל היום מסודר לכם</span><span class="en">🕐 Ride time and slide name — your day, organized</span></li>
         </ul>
@@ -504,12 +514,17 @@ h2 { position: relative; }
       <div class="product-card">
         <div class="product-icon">📷</div>
         <h3><span class="he">צלם הפארק</span><span class="en">Park photographer</span></h3>
-        <p><span class="he">צלם מקצועי עם מצלמת Canon מסתובב בפארק ומצלם אתכם ברגעים הכי טובים — בבריכת הגלים, באזורי הילדים ובין המתקנים. הצילומים מזוהים לצמיד שלכם ומופיעים בלשונית «צלם» באפליקציה, מוכנים לצפייה ולרכישה.</span>
-        <span class="en">A professional photographer with a Canon camera roams the park and catches your best moments — at the wave pool, the kids' zones, and everywhere in between. The shots are matched to your wristband and appear under the app's “Photographer” tab, ready to view and buy.</span></p>
+        <p><span class="he">צלם מקצועי מסתובב בפארק ומצלם אתכם ברגעים הכי טובים — בבריכת הגלים, באזורי הילדים ובין המתקנים. הצילומים מזוהים לצמיד שלכם ומופיעים בלשונית «צלם» באפליקציה, מוכנים לצפייה ולרכישה.</span>
+        <span class="en">A professional photographer roams the park and catches your best moments — at the wave pool, the kids' zones, and everywhere in between. The shots are matched to your wristband and appear under the app's “Photographer” tab, ready to view and buy.</span></p>
         <ul>
           <li><span class="he">🖼️ צילומי סטילס באיכות מקצועית</span><span class="en">🖼️ Pro-quality stills</span></li>
           <li><span class="he">👨‍👩‍👧‍👦 כל המשפחה בפריים — לא רק סלפי רטוב</span><span class="en">👨‍👩‍👧‍👦 The whole family in frame — not just a wet selfie</span></li>
         </ul>
+        <div class="photog-gallery">
+          <a href="media/photographer-1.jpg" target="_blank" rel="noopener"><img src="media/photographer-1.jpg" alt="משפחה תחת מפרשי הצל בווטרלנד אילת" loading="lazy"></a>
+          <a href="media/photographer-2.jpg" target="_blank" rel="noopener"><img src="media/photographer-2.jpg" alt="משפחה ליד בריכת הגלים על רקע המגלשות" loading="lazy"></a>
+          <a href="media/photographer-3.jpg" target="_blank" rel="noopener"><img src="media/photographer-3.jpg" alt="משפחה באזור הישיבה מול מתחם הילדים" loading="lazy"></a>
+        </div>
       </div>
     </div>
   </div>
@@ -624,8 +639,8 @@ h2 { position: relative; }
 
     <details>
       <summary><span class="he">כל גלישה מצולמת?</span><span class="en">Is every ride captured?</span></summary>
-      <p><span class="he">המצלמות פועלות במגלשות נבחרות ותלויות בזיהוי הצמיד ובתנאים טכניים, ולכן איננו מתחייבים שכל גלישה תתועד. מה שצולם — מופיע בתצוגה מקדימה לפני שאתם משלמים.</span>
-      <span class="en">Cameras run on selected slides and depend on band detection and technical conditions, so we can't promise every run is captured. Whatever was captured shows as a preview before you pay.</span></p>
+      <p><span class="he">המצלמות פועלות במגלשות נבחרות, והצילום מתבצע רק כשסורקים את הצמיד בעמדה שבמגלשה לפני הגלישה — ובכפוף לתנאים טכניים, ולכן איננו מתחייבים שכל גלישה תתועד. מה שצולם — מופיע בתצוגה מקדימה לפני שאתם משלמים.</span>
+      <span class="en">Cameras run on selected slides, and a ride is captured only when you scan your wristband at the slide station before riding — subject to technical conditions, so we can't promise every run is captured. Whatever was captured shows as a preview before you pay.</span></p>
     </details>
 
     <details>
@@ -637,7 +652,7 @@ h2 { position: relative; }
     <details>
       <summary><span class="he">קניתי — במה זה נפתח?</span><span class="en">I bought a package — where does it unlock?</span></summary>
       <p><span class="he">מיד עם אישור התשלום, בכל המכשירים שמקושרים לאותו צמיד: הסרטונים המלאים מחליפים את התצוגות המקדימות והתמונות נפתחות באיכות מלאה.</span>
-      <span class="en">Instantly after payment, on every device linked to that band: full reels replace the previews and photos unlock in full quality.</span></p>
+      <span class="en">Instantly after payment, on every device linked to that band: full videos replace the previews and photos unlock in full quality.</span></p>
     </details>
   </div>
 </section>
