@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peocl — Advanced capture systems for action parks</title>
+  <meta name="description" content="Peocl builds automatic photography and video capture systems for water parks and surf parks — on-slide cameras, wave capture, park photographers, and guest apps that sell the media.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%B8%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #0d1b2a;
+      --ink2: #4a6070;
+      --muted: #8ba0b0;
+      --accent: #0095d9;
+      --accent-dark: #004f8c;
+      --line: #e3edf3;
+      --bg-soft: #f6fafc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: #fff;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header { border-bottom: 1px solid var(--line); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-size: 20px; font-weight: 800; letter-spacing: 0.5px; color: var(--ink); }
+    .logo span { color: var(--accent); }
+    nav a { color: var(--ink2); font-size: 14px; font-weight: 600; margin-left: 20px; }
+
+    .hero { padding: 72px 0 56px; }
+    .kicker {
+      color: var(--accent); font-size: 13px; font-weight: 800;
+      letter-spacing: 2.5px; text-transform: uppercase;
+    }
+    h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.15; margin: 12px 0 18px; letter-spacing: -0.5px; }
+    .hero p { font-size: 18px; color: var(--ink2); max-width: 640px; }
+
+    section { padding: 48px 0; border-top: 1px solid var(--line); }
+    h2 { font-size: 22px; margin-bottom: 20px; }
+    h3 { font-size: 16px; margin-bottom: 6px; }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+    .card {
+      border: 1px solid var(--line); border-radius: 12px; padding: 20px;
+      background: var(--bg-soft);
+    }
+    .card .icon { font-size: 26px; margin-bottom: 8px; }
+    .card p { color: var(--ink2); font-size: 14.5px; }
+
+    .deploy { display: flex; flex-direction: column; gap: 14px; }
+    .deploy-row {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+      border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px;
+      flex-wrap: wrap;
+    }
+    .deploy-row strong { font-size: 16px; }
+    .deploy-row .where { color: var(--ink2); font-size: 14px; flex: 1; }
+    .tag {
+      font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--accent-dark); background: #e2f3fc; border-radius: 20px; padding: 3px 10px;
+    }
+
+    ul.plain { list-style: none; }
+    ul.plain li { padding: 6px 0; color: var(--ink2); font-size: 15px; }
+    ul.plain li::before { content: "— "; color: var(--accent); font-weight: 700; }
+
+    .contact-box {
+      background: var(--bg-soft); border: 1px solid var(--line); border-radius: 12px;
+      padding: 22px; font-size: 15px;
+    }
+
+    footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="logo">PE<span>O</span>CL</div>
+    <nav>
+      <a href="#what">What we do</a>
+      <a href="#deployments">Deployments</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <div class="kicker">Advanced park photography systems</div>
+    <h1>Every ride. Every wave.<br>Captured, matched to the guest, and sold.</h1>
+    <p>
+      Peocl builds automatic photo &amp; video capture systems for action parks —
+      water parks and surf parks. Our cameras identify the guest's wristband,
+      record the moment, and our apps deliver and sell the media the same day.
+    </p>
+  </div>
+</div>
+
+<section id="what">
+  <div class="container">
+    <h2>What we do</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="icon">🎢</div>
+        <h3>On-slide capture</h3>
+        <p>Camera rigs on water slides detect the rider's RFID wristband and record a full video of the run plus action photos — automatically, ride after ride.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🏄</div>
+        <h3>Wave &amp; surf capture</h3>
+        <p>Session filming for artificial wave lagoons: per-surfer footage of every wave, matched to the surfer, ready to review technique or share the highlight.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📷</div>
+        <h3>Park photographers</h3>
+        <p>Pro photographers with Canon gear roam the park; every shot is matched to the guest's wristband and appears in their app within minutes.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📱</div>
+        <h3>Guest apps &amp; payments</h3>
+        <p>iOS, Android, and web apps where guests link their wristband, preview everything free, and unlock packages with secure in-app payment (Tranzila, PCI-DSS).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="deployments">
+  <div class="container">
+    <h2>Deployments</h2>
+    <div class="deploy">
+      <div class="deploy-row">
+        <strong>WaterCap</strong>
+        <span class="where">Waterland Eilat — 23 slides, on-slide capture + park photographer. <a href="https://watercap.peocl.com/" target="_blank" rel="noopener">watercap.peocl.com</a> · <a href="https://www.waterland.co.il/" target="_blank" rel="noopener">waterland.co.il</a></span>
+        <span class="tag">Live</span>
+      </div>
+      <div class="deploy-row">
+        <strong>Surf capture</strong>
+        <span class="where">SRF Park TLV — wave lagoon session filming, Tel Aviv. <a href="https://www.srfparktlv.co.il/" target="_blank" rel="noopener">srfparktlv.co.il</a></span>
+        <span class="tag">Partner</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>For park operators</h2>
+    <ul class="plain">
+      <li>We install and operate the full system — cameras, wristband scanners, cloud, apps, and payments.</li>
+      <li>Guests get free previews and buy only what was actually captured; the park earns on every sale.</li>
+      <li>No ops burden for your team: media is captured, matched, delivered, and deleted automatically.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2>Contact</h2>
+    <div class="contact-box">
+      <strong>Peocl Ltd.</strong><br>
+      Partnerships &amp; sales: <a href="mailto:hello@peocl.com">hello@peocl.com</a><br>
+      Support: <a href="mailto:support@peocl.com">support@peocl.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2026 Peocl Ltd. · <a href="https://watercap.peocl.com/legal/watercap-privacy-policy-en.pdf">Privacy</a> · <a href="https://watercap.peocl.com/legal/watercap-terms-en.pdf">Terms</a>
+  </div>
+</footer>
+
+</body>
+</html>

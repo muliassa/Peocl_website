@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WaterCap — הזיכרונות שלכם מווטרלנד, ישר לנייד</title>
+  <meta name="description" content="WaterCap מצלמת אתכם במגלשות ווטרלנד אילת ואצל הצלם בפארק — מקשרים את הצמיד, צופים בכל התמונות והסרטונים מהיום ופותחים אותם באפליקציה.">
+  <meta property="og:title" content="WaterCap — Your Waterland memories, straight to your phone">
+  <meta property="og:description" content="Automatic on-slide videos and pro photographer shots at Waterland Eilat. Link your wristband, watch your day, unlock your memories.">
+  <meta property="og:url" content="https://watercap.peocl.com/">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+/* ── WaterCap brand ─────────────────────────────────────────────────── */
+:root {
+  --blue: #0095d9;
+  --dark: #003d6b;
+  --navy: #0d1b2a;
+  --surface: #eff9ff;
+  --border: #d0eeff;
+  --text2: #4a6070;
+  --muted: #8ba0b0;
+  --gradient: linear-gradient(135deg, #004f8c 0%, #0095d9 60%, #00c5e8 100%);
+  --shadow: 0 2px 12px rgba(0, 149, 217, 0.1);
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Heebo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Arial Hebrew", Arial, sans-serif;
+  color: var(--navy);
+  background: #fff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Language switching: paired .he / .en elements */
+body[data-lang="he"] .en { display: none !important; }
+body[data-lang="en"] .he { display: none !important; }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+a { color: var(--blue); text-decoration: none; }
+
+h2 { font-size: clamp(24px, 4vw, 34px); font-weight: 800; color: var(--dark); text-align: center; }
+.section-sub { text-align: center; color: var(--text2); margin-top: 8px; font-size: 17px; }
+
+/* ── Buttons ────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border-radius: 12px; padding: 13px 24px;
+  font-size: 16px; font-weight: 700; cursor: pointer; border: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--gradient); color: #fff; box-shadow: 0 4px 16px rgba(0, 149, 217, 0.35); }
+.btn-outline { background: #fff; color: var(--blue); border: 1.5px solid var(--border); }
+.btn-small { padding: 9px 16px; font-size: 14px; background: var(--gradient); color: #fff; }
+
+/* ── Nav ────────────────────────────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner { display: flex; align-items: center; gap: 24px; height: 64px; }
+.logo { font-size: 19px; color: var(--dark); letter-spacing: 0.2px; }
+.nav-links { display: flex; gap: 22px; margin-inline-start: auto; }
+.nav-links a { color: var(--text2); font-weight: 600; font-size: 15px; }
+.nav-links a:hover { color: var(--blue); }
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.lang-btn {
+  background: #fff; border: 1.5px solid var(--border); color: var(--text2);
+  border-radius: 10px; padding: 8px 12px; font-weight: 700; font-size: 13px; cursor: pointer;
+}
+.lang-btn:hover { border-color: var(--blue); color: var(--blue); }
+@media (max-width: 720px) { .nav-links { display: none; } }
+
+/* ── Hero ───────────────────────────────────────────────────────────── */
+.hero { position: relative; background: var(--gradient); color: #fff; overflow: hidden; }
+.hero-inner {
+  display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px;
+  align-items: center; padding-top: 64px; padding-bottom: 110px;
+}
+@media (max-width: 860px) { .hero-inner { grid-template-columns: 1fr; padding-bottom: 90px; } }
+
+.partner-chip {
+  display: inline-block; background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 30px; padding: 7px 16px; font-size: 14px; margin-bottom: 20px;
+}
+.hero h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.15; font-weight: 800; }
+.hero-sub { margin-top: 16px; font-size: 18px; opacity: 0.93; max-width: 560px; }
+.hero-ctas { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+.store-badges { display: flex; gap: 10px; }
+.store-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff; border-radius: 10px; padding: 7px 14px;
+}
+.store-badge > span:first-child { font-size: 20px; }
+.store-text { display: flex; flex-direction: column; line-height: 1.15; }
+.store-text small { font-size: 10px; opacity: 0.8; }
+.store-text strong { font-size: 14px; }
+
+.hero-facts { display: flex; gap: 34px; margin-top: 34px; }
+.hero-facts > div { display: flex; flex-direction: column; }
+.hero-facts strong { font-size: 26px; font-weight: 800; }
+.hero-facts span { font-size: 13px; opacity: 0.85; }
+
+/* phone mockup */
+.hero-phone { display: flex; justify-content: center; }
+.phone {
+  width: 250px; background: var(--surface); border-radius: 28px;
+  border: 6px solid #06263f; box-shadow: 0 24px 60px rgba(0, 20, 40, 0.45);
+  overflow: hidden; color: var(--navy); font-size: 13px;
+  transform: rotate(4deg);
+}
+.phone-header {
+  background: var(--gradient); color: #fff; padding: 14px 14px 10px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.phone-band { font-family: ui-monospace, Menlo, monospace; font-weight: 700; }
+.phone-day { font-size: 11px; }
+.phone-tabs { display: flex; background: #dcf0fa; margin: 10px; border-radius: 10px; padding: 3px; }
+.phone-tabs span { flex: 1; text-align: center; padding: 6px; border-radius: 8px; font-weight: 700; font-size: 12px; color: var(--text2); }
+.phone-tabs span.active { background: #fff; color: var(--navy); }
+.phone-clip { background: #fff; margin: 0 10px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+.phone-video {
+  background: linear-gradient(160deg, #06304f, #0a4a76); color: #fff;
+  aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: 20px;
+}
+.phone-video em { font-size: 11px; font-style: normal; opacity: 0.8; }
+.phone-thumbs { display: flex; gap: 2px; margin-top: 2px; }
+.phone-thumbs i {
+  flex: 1; aspect-ratio: 1.6; background: #cfe8f5; font-style: normal;
+  display: flex; align-items: center; justify-content: center; font-size: 22px;
+}
+.phone-meta { display: flex; justify-content: space-between; padding: 8px 12px; font-weight: 600; }
+.phone-buybar {
+  display: flex; justify-content: space-between; align-items: center;
+  margin: 10px; padding: 10px 14px; background: #fff; border-radius: 12px;
+  font-weight: 700; box-shadow: var(--shadow);
+}
+.phone-buybar b { color: var(--blue); font-size: 16px; }
+
+.wave-divider { position: absolute; bottom: -1px; left: 0; right: 0; line-height: 0; }
+.wave-divider svg { width: 100%; height: 60px; }
+
+/* ── Sections ───────────────────────────────────────────────────────── */
+.section { padding: 72px 0; }
+.section-alt { background: var(--surface); }
+
+/* steps */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+@media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
+.step {
+  position: relative; background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 28px 22px 22px; box-shadow: var(--shadow);
+}
+.step-icon { font-size: 40px; margin-bottom: 10px; }
+.step-num {
+  position: absolute; top: 18px; inset-inline-end: 18px;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--gradient); color: #fff; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+}
+.step h3 { font-size: 18px; color: var(--dark); margin-bottom: 8px; }
+.step p { color: var(--text2); font-size: 15px; }
+
+/* products */
+.products { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 40px; }
+@media (max-width: 820px) { .products { grid-template-columns: 1fr; } }
+.product-card {
+  background: #fff; border-radius: var(--radius); padding: 30px 26px;
+  box-shadow: var(--shadow); border: 1.5px solid var(--border);
+}
+.product-icon { font-size: 44px; margin-bottom: 12px; }
+.product-card h3 { font-size: 21px; color: var(--dark); margin-bottom: 10px; }
+.product-card p { color: var(--text2); font-size: 15px; }
+.product-card ul { list-style: none; margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+.product-card li { font-size: 15px; font-weight: 600; }
+
+/* packages */
+.pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+@media (max-width: 820px) { .pricing { grid-template-columns: 1fr; } }
+.price-card {
+  position: relative; background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 30px 24px; text-align: center; box-shadow: var(--shadow);
+}
+.price-card.featured { border: 2.5px solid var(--blue); box-shadow: 0 10px 30px rgba(0, 149, 217, 0.22); }
+.best-badge {
+  position: absolute; top: -14px; inset-inline-start: 50%; transform: translateX(-50%);
+  background: var(--gradient); color: #fff; border-radius: 20px;
+  font-size: 12px; font-weight: 800; padding: 5px 16px; white-space: nowrap;
+}
+body[data-lang="he"] .best-badge { transform: translateX(50%); }
+.price-emoji { font-size: 38px; }
+.price-card h3 { font-size: 18px; color: var(--dark); margin: 8px 0 10px; }
+.price-card p { color: var(--text2); font-size: 14px; }
+.pricing-note { text-align: center; color: var(--muted); font-size: 13.5px; margin-top: 26px; }
+
+/* apps */
+.apps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+@media (max-width: 820px) { .apps-row { grid-template-columns: 1fr; } }
+.app-card {
+  background: #fff; border-radius: var(--radius); border: 1.5px solid var(--border);
+  box-shadow: var(--shadow); padding: 28px 22px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.app-icon { font-size: 40px; }
+.app-card h3 { color: var(--dark); font-size: 19px; }
+.app-card p { color: var(--text2); font-size: 14px; min-height: 44px; }
+
+/* partner */
+.partner-section { background: var(--gradient); color: #fff; }
+.partner-section h2 { color: #fff; text-align: start; }
+.partner-inner {
+  display: grid; grid-template-columns: 1.4fr 0.6fr; gap: 40px; align-items: center;
+}
+@media (max-width: 820px) { .partner-inner { grid-template-columns: 1fr; } }
+.partner-inner p { margin: 14px 0 20px; opacity: 0.93; }
+.partner-section .btn-outline { border-color: rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.12); color: #fff; }
+.partner-stats { display: flex; flex-direction: column; gap: 14px; }
+.partner-stats > div {
+  background: rgba(255, 255, 255, 0.13); border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px; padding: 12px 18px; display: flex; align-items: baseline; gap: 10px;
+}
+.partner-stats strong { font-size: 22px; }
+.partner-stats span { font-size: 14px; opacity: 0.9; }
+
+/* FAQ */
+.faq-container { max-width: 760px; }
+#faq details {
+  background: #fff; border: 1.5px solid var(--border); border-radius: 12px;
+  padding: 16px 20px; margin-top: 12px; box-shadow: var(--shadow);
+}
+#faq details:first-of-type { margin-top: 36px; }
+#faq summary { font-weight: 700; cursor: pointer; color: var(--dark); font-size: 16px; }
+#faq details p { color: var(--text2); margin-top: 10px; font-size: 15px; }
+
+/* footer */
+.footer { background: #06263f; color: #cfe4f2; padding: 48px 0 40px; }
+.footer-inner { display: grid; grid-template-columns: 1.4fr 0.8fr 0.8fr; gap: 36px; }
+@media (max-width: 720px) { .footer-inner { grid-template-columns: 1fr; } }
+.footer .logo { color: #fff; }
+.footer p { font-size: 14px; opacity: 0.8; margin-top: 10px; }
+.copyright { font-size: 12.5px; }
+.footer-col { display: flex; flex-direction: column; gap: 8px; }
+.footer-col h4 { color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.footer-col a { color: #9fc9e4; font-size: 14px; }
+.footer-col a:hover { color: #fff; }
+
+/* ── Design pass: typography rhythm ─────────────────────────────────── */
+h1, h2, h3 { letter-spacing: -0.01em; }
+h2 { position: relative; }
+.section-overline {
+  display: block; text-align: center; color: var(--blue);
+  font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* ── Design pass: hero atmosphere ───────────────────────────────────── */
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(600px 300px at 85% 10%, rgba(255, 255, 255, 0.14), transparent 70%),
+    radial-gradient(500px 400px at 10% 90%, rgba(0, 197, 232, 0.25), transparent 70%);
+}
+.bubbles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.bubble {
+  position: absolute; bottom: -60px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  animation: rise linear infinite;
+}
+@keyframes rise {
+  from { transform: translateY(0) translateX(0); opacity: 0; }
+  10%  { opacity: 1; }
+  to   { transform: translateY(-110vh) translateX(30px); opacity: 0; }
+}
+.hero-inner { position: relative; z-index: 1; }
+
+.phone { animation: phone-float 5s ease-in-out infinite; }
+@keyframes phone-float {
+  0%, 100% { transform: rotate(4deg) translateY(0); }
+  50%      { transform: rotate(4deg) translateY(-12px); }
+}
+.hero-phone::after {
+  content: ""; display: block; position: absolute;
+  width: 180px; height: 22px; border-radius: 50%;
+  background: rgba(0, 20, 40, 0.35); filter: blur(12px);
+  margin-top: 8px; align-self: flex-end;
+  animation: shadow-breathe 5s ease-in-out infinite;
+}
+.hero-phone { flex-direction: column; align-items: center; }
+@keyframes shadow-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50%      { transform: scale(0.85); opacity: 0.5; }
+}
+
+/* ── Design pass: nav scroll shadow ─────────────────────────────────── */
+.nav.scrolled { box-shadow: 0 6px 24px rgba(0, 61, 107, 0.12); }
+
+/* ── Design pass: cards & icons ─────────────────────────────────────── */
+.step-icon, .product-icon, .app-icon, .price-emoji {
+  width: 76px; height: 76px; border-radius: 24px;
+  background: linear-gradient(150deg, #e4f6ff, #cfeeff);
+  border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px !important;
+}
+.step-icon { margin-bottom: 14px; }
+.product-icon { margin-bottom: 14px; }
+.app-card .app-icon { margin: 0 auto; }
+.price-emoji { margin: 0 auto; }
+
+.step, .product-card, .price-card, .app-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.step:hover, .product-card:hover, .price-card:hover, .app-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 149, 217, 0.18);
+}
+.step::after {
+  content: ""; position: absolute; inset-inline-start: 0; top: 0;
+  width: 100%; height: 4px; border-radius: 4px 4px 0 0;
+  background: var(--gradient); opacity: 0; transition: opacity 0.25s;
+}
+.step:hover::after { opacity: 1; }
+.price-card.featured { transform: scale(1.03); }
+.price-card.featured:hover { transform: scale(1.03) translateY(-6px); }
+
+/* ── Design pass: FAQ affordance ────────────────────────────────────── */
+#faq summary { position: relative; padding-inline-end: 30px; list-style: none; }
+#faq summary::-webkit-details-marker { display: none; }
+#faq summary::after {
+  content: "+"; position: absolute; inset-inline-end: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--surface); color: var(--blue);
+  font-weight: 800; display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s;
+}
+#faq details[open] summary::after { content: "−"; transform: translateY(-50%) rotate(180deg); }
+
+/* ── Design pass: scroll reveal ─────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .bubble, .phone, .hero-phone::after { animation: none; }
+}
+
+</style>
+</head>
+<body data-lang="he">
+
+<!-- ─── Nav ─────────────────────────────────────────────────────────── -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="#top">🌊 <strong>WaterCap</strong></a>
+    <nav class="nav-links">
+      <a href="#how"><span class="he">איך זה עובד</span><span class="en">How it works</span></a>
+      <a href="#products"><span class="he">המוצרים</span><span class="en">Products</span></a>
+      <a href="#pricing"><span class="he">חבילות</span><span class="en">Packages</span></a>
+      <a href="#faq"><span class="he">שאלות</span><span class="en">FAQ</span></a>
+    </nav>
+    <div class="nav-actions">
+      <button id="lang-toggle" class="lang-btn" type="button">EN</button>
+      <a class="btn btn-small" href="/app/">
+        <span class="he">לאפליקציית הרשת</span><span class="en">Open Web App</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ─── Hero ────────────────────────────────────────────────────────── -->
+<section class="hero" id="top">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="partner-chip">
+        <span class="he">שותף המדיה הרשמי של <strong>ווטרלנד אילת</strong></span>
+        <span class="en">Official media partner of <strong>Waterland Eilat</strong></span>
+      </div>
+      <h1>
+        <span class="he">הגלישה נגמרת.<br>הזיכרון נשאר אצלכם בנייד.</span>
+        <span class="en">The ride ends.<br>The memory lands on your phone.</span>
+      </h1>
+      <p class="hero-sub">
+        <span class="he">מצלמות במגלשות המים של ווטרלנד מתעדות אתכם אוטומטית, וצלם מקצועי עם Canon מסתובב בפארק. מקשרים את הצמיד — ומקבלים את כל התמונות והסרטונים של היום.</span>
+        <span class="en">Cameras on Waterland's water slides capture you automatically, and a pro photographer with a Canon roams the park. Link your wristband — and get every photo and video from your day.</span>
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="/app/">
+          <span class="he">🎗️ קשרו את הצמיד שלכם</span>
+          <span class="en">🎗️ Link your wristband</span>
+        </a>
+        <div class="store-badges">
+          <a class="store-badge" href="#" aria-label="App Store">
+            <span></span>
+            <span class="store-text"><small class="he">הורידו מה־</small><small class="en">Download on the</small><strong>App Store</strong></span>
+          </a>
+          <a class="store-badge" href="#" aria-label="Google Play">
+            <span>▶</span>
+            <span class="store-text"><small class="he">הורידו מ־</small><small class="en">Get it on</small><strong>Google Play</strong></span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-facts">
+        <div><strong>23</strong><span class="he">מגלשות בפארק</span><span class="en">slides in the park</span></div>
+        <div><strong>2</strong><span class="he">מוצרי מדיה</span><span class="en">media products</span></div>
+        <div><strong>7</strong><span class="he">ימי זמינות</span><span class="en">days available</span></div>
+      </div>
+    </div>
+
+    <!-- CSS phone mockup -->
+    <div class="hero-phone" aria-hidden="true">
+      <div class="phone">
+        <div class="phone-header">
+          <span class="phone-band">C6F5636D</span>
+          <span class="phone-day">📅 <span class="he">היום</span><span class="en">Today</span></span>
+        </div>
+        <div class="phone-tabs">
+          <span class="active">🎢 <span class="he">מגלשות</span><span class="en">Rides</span></span>
+          <span>📷 <span class="he">צלם</span><span class="en">Photos</span></span>
+        </div>
+        <div class="phone-clip">
+          <div class="phone-video">▶<em class="he">קמיקזה · 24 מ׳</em><em class="en">Kamikaze · 24m</em></div>
+          <div class="phone-thumbs"><i>🌊</i><i>🤿</i></div>
+          <div class="phone-meta"><span class="he">מגלשה A</span><span class="en">Slide A</span><b>10:30</b></div>
+        </div>
+        <div class="phone-buybar">
+          <span class="he">פתחו הכול</span><span class="en">Unlock all</span>
+          <b>🔓</b>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wave-divider"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,50 C240,90 480,0 720,30 C960,60 1200,20 1440,55 L1440,90 L0,90 Z" fill="#eff9ff"/></svg></div>
+</section>
+
+<!-- ─── How it works ────────────────────────────────────────────────── -->
+<section class="section" id="how">
+  <div class="container">
+    <span class="section-overline"><span class="he">פשוט וקל</span><span class="en">Simple &amp; easy</span></span>
+    <h2><span class="he">איך זה עובד?</span><span class="en">How it works</span></h2>
+    <p class="section-sub">
+      <span class="he">שלושה צעדים בין המגלשה לגלריה שלכם.</span>
+      <span class="en">Three steps from the slide to your gallery.</span>
+    </p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon">🎢</div>
+        <div class="step-num">1</div>
+        <h3><span class="he">גולשים עם הצמיד</span><span class="en">Ride with your wristband</span></h3>
+        <p><span class="he">עונדים את צמיד הפארק וגולשים כרגיל. המצלמות שלנו במגלשות מזהות את הצמיד ומתעדות כל גלישה — וידאו מלא ותמונות מהמסלול ומהפסגה.</span>
+        <span class="en">Wear your park wristband and ride as usual. Our slide cameras detect the band and capture every run — a full video plus ride and top photos.</span></p>
+      </div>
+      <div class="step">
+        <div class="step-icon">📡</div>
+        <div class="step-num">2</div>
+        <h3><span class="he">מקשרים את הצמיד</span><span class="en">Link the wristband</span></h3>
+        <p><span class="he">מורידים את האפליקציה (iOS / Android) או נכנסים מהדפדפן, מקלידים את מספר עמדת הסריקה שבפארק ומצמידים את הצמיד. שנייה — ואתם מחוברים.</span>
+        <span class="en">Get the app (iOS / Android) or open the web app, type the number on a park scanner, and tap your band on it. One second — you're linked.</span></p>
+      </div>
+      <div class="step">
+        <div class="step-icon">🎬</div>
+        <div class="step-num">3</div>
+        <h3><span class="he">צופים ופותחים</span><span class="en">Watch &amp; unlock</span></h3>
+        <p><span class="he">כל המדיה של היום מחכה באפליקציה — תצוגות מקדימות בחינם. בוחרים חבילה, משלמים מאובטח, ומורידים באיכות מלאה לכל המכשירים המקושרים.</span>
+        <span class="en">Your whole day is waiting in the app — previews are free. Pick a package, pay securely, and download in full quality on every linked device.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Products ────────────────────────────────────────────────────── -->
+<section class="section section-alt" id="products">
+  <div class="container">
+    <span class="section-overline"><span class="he">מה מצלמים</span><span class="en">What we capture</span></span>
+    <h2><span class="he">שני מוצרים, יום שלם של זיכרונות</span><span class="en">Two products, a full day of memories</span></h2>
+    <div class="products">
+      <div class="product-card">
+        <div class="product-icon">🎢</div>
+        <h3><span class="he">סרטוני מגלשות</span><span class="en">Waterslide videos</span></h3>
+        <p><span class="he">מערכת המצלמות שלנו מותקנת על מגלשות ווטרלנד — מהקמיקזה בגובה 24 מטר ועד מגלשות האבובים המשפחתיות. כל גלישה הופכת לכרטיס משלו באפליקציה:</span>
+        <span class="en">Our camera rigs live on Waterland's slides — from the 24-meter Kamikaze to the family tube slides. Every run becomes its own card in the app:</span></p>
+        <ul>
+          <li><span class="he">🎬 סרטון ריל מלא של הגלישה</span><span class="en">🎬 A full reel video of the ride</span></li>
+          <li><span class="he">📸 תמונת אקשן מהמסלול + תמונה מהפסגה</span><span class="en">📸 An action shot on the slide + a top-of-slide photo</span></li>
+          <li><span class="he">🕐 שעת הגלישה והמגלשה — כל היום מסודר לכם</span><span class="en">🕐 Ride time and slide name — your day, organized</span></li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">📷</div>
+        <h3><span class="he">צלם הפארק</span><span class="en">Park photographer</span></h3>
+        <p><span class="he">צלם מקצועי עם מצלמת Canon מסתובב בפארק ומצלם אתכם ברגעים הכי טובים — בבריכת הגלים, באזורי הילדים ובין המתקנים. הצילומים מזוהים לצמיד שלכם ומופיעים בלשונית «צלם» באפליקציה, מוכנים לצפייה ולרכישה.</span>
+        <span class="en">A professional photographer with a Canon camera roams the park and catches your best moments — at the wave pool, the kids' zones, and everywhere in between. The shots are matched to your wristband and appear under the app's “Photographer” tab, ready to view and buy.</span></p>
+        <ul>
+          <li><span class="he">🖼️ צילומי סטילס באיכות מקצועית</span><span class="en">🖼️ Pro-quality stills</span></li>
+          <li><span class="he">👨‍👩‍👧‍👦 כל המשפחה בפריים — לא רק סלפי רטוב</span><span class="en">👨‍👩‍👧‍👦 The whole family in frame — not just a wet selfie</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Packages ────────────────────────────────────────────────────── -->
+<section class="section" id="pricing">
+  <div class="container">
+    <span class="section-overline"><span class="he">בחרו מה לפתוח</span><span class="en">Pick what to unlock</span></span>
+    <h2><span class="he">החבילות שלנו</span><span class="en">Our packages</span></h2>
+    <p class="section-sub">
+      <span class="he">לכל צמיד, לכל יום ביקור. תצוגות מקדימות — תמיד בחינם. המחירים מוצגים באפליקציה.</span>
+      <span class="en">Per wristband, per visit day. Previews are always free. Prices are shown in the app.</span>
+    </p>
+    <div class="pricing">
+      <div class="price-card">
+        <div class="price-emoji">📷</div>
+        <h3><span class="he">תמונות צלם</span><span class="en">Photographer Photos</span></h3>
+        <p><span class="he">כל צילומי הצלם המקצועי של הצמיד שלכם ליום הביקור.</span>
+        <span class="en">Every pro photographer shot of your wristband for the visit day.</span></p>
+      </div>
+      <div class="price-card">
+        <div class="price-emoji">🎢</div>
+        <h3><span class="he">סרטוני מגלשות</span><span class="en">Waterslide Videos</span></h3>
+        <p><span class="he">כל סרטוני ותמונות הגלישות שלכם מכל המגלשות, ליום הביקור.</span>
+        <span class="en">All your ride videos and photos from every slide, for the visit day.</span></p>
+      </div>
+      <div class="price-card featured">
+        <div class="best-badge"><span class="he">הכי פופולרי</span><span class="en">Most popular</span></div>
+        <div class="price-emoji">🌊</div>
+        <h3><span class="he">הכול</span><span class="en">Everything</span></h3>
+        <p><span class="he">כל התמונות והסרטונים — מגלשות + צלם — של הצמיד שלכם ליום הביקור.</span>
+        <span class="en">Every photo and video — slides + photographer — for your wristband's visit day.</span></p>
+      </div>
+    </div>
+    <p class="pricing-note">
+      <span class="he">התשלום מאובטח באמצעות טרנזילה (PCI-DSS Level 1) — כרטיס אשראי או Google Pay. המדיה זמינה 7 ימים מיום הביקור.</span>
+      <span class="en">Payments are secured by Tranzila (PCI-DSS Level 1) — credit card or Google Pay. Media stays available for 7 days after your visit.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ─── Apps ────────────────────────────────────────────────────────── -->
+<section class="section section-alt" id="apps">
+  <div class="container">
+    <h2><span class="he">בכל מכשיר שתבחרו</span><span class="en">On any device you choose</span></h2>
+    <div class="apps-row">
+      <div class="app-card">
+        <div class="app-icon"></div>
+        <h3>iPhone</h3>
+        <p><span class="he">אפליקציית iOS — קישור צמיד, צפייה ורכישה.</span><span class="en">iOS app — link, watch, and buy.</span></p>
+        <a class="btn btn-outline" href="#"><span class="he">בקרוב ב־App Store</span><span class="en">Coming to the App Store</span></a>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">🤖</div>
+        <h3>Android</h3>
+        <p><span class="he">אפליקציית Android — כולל סריקת NFC ישירות בטלפון.</span><span class="en">Android app — with on-phone NFC scanning.</span></p>
+        <a class="btn btn-outline" href="#"><span class="he">בקרוב ב־Google Play</span><span class="en">Coming to Google Play</span></a>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">🌐</div>
+        <h3><span class="he">דפדפן</span><span class="en">Web</span></h3>
+        <p><span class="he">בלי התקנה — נכנסים מכל דפדפן, מקשרים וצופים.</span><span class="en">No install — open in any browser, link, and watch.</span></p>
+        <a class="btn btn-primary" href="/app/"><span class="he">פתחו עכשיו</span><span class="en">Open now</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Partner ─────────────────────────────────────────────────────── -->
+<section class="section partner-section">
+  <div class="container partner-inner">
+    <div>
+      <h2><span class="he">גאים להיות השותפים של ווטרלנד אילת</span><span class="en">Proud partners of Waterland Eilat</span></h2>
+      <p><span class="he">ווטרלנד — פארק המים הגדול והיחיד באילת: 23 מגלשות בארבעה מתחמים, בריכת גלים ומתחם ילדים, 500 מטר מריף הדולפינים. WaterCap היא מערכת המדיה הרשמית של הפארק.</span>
+      <span class="en">Waterland — Eilat's largest and only waterpark: 23 slides across four zones, a wave pool and kids' area, 500m from the Dolphin Reef. WaterCap is the park's official media system.</span></p>
+      <a class="btn btn-outline" href="https://www.waterland.co.il/" target="_blank" rel="noopener">
+        <span class="he">לאתר ווטרלנד ←</span><span class="en">Visit waterland.co.il →</span>
+      </a>
+    </div>
+    <div class="partner-stats">
+      <div><strong>🎢 23</strong><span class="he">מגלשות מים</span><span class="en">water slides</span></div>
+      <div><strong>🌊 4</strong><span class="he">מתחמי אטרקציות</span><span class="en">themed zones</span></div>
+      <div><strong>☀️ 365</strong><span class="he">ימים בשנה</span><span class="en">days a year</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─────────────────────────────────────────────────────────── -->
+<section class="section" id="faq">
+  <div class="container faq-container">
+    <span class="section-overline"><span class="he">יש שאלה?</span><span class="en">Questions?</span></span>
+    <h2><span class="he">שאלות נפוצות</span><span class="en">FAQ</span></h2>
+
+    <details>
+      <summary><span class="he">מי יכול לראות את התמונות שלי?</span><span class="en">Who can see my photos?</span></summary>
+      <p><span class="he">רק מכשירים שקישרו פיזית את הצמיד שלכם בעמדת סריקה בפארק. שמרו על הצמיד ואל תיתנו לאחרים לסרוק אותו.</span>
+      <span class="en">Only devices that physically linked your wristband at a park scanner. Keep your band safe and don't let others scan it.</span></p>
+    </details>
+
+    <details>
+      <summary><span class="he">כמה זמן המדיה זמינה?</span><span class="en">How long is my media available?</span></summary>
+      <p><span class="he">7 ימים מיום הביקור, ואז היא נמחקת לצמיתות. הורידו את מה שחשוב לכם בזמן.</span>
+      <span class="en">7 days after your visit day, then it's permanently deleted. Download what matters in time.</span></p>
+    </details>
+
+    <details>
+      <summary><span class="he">אפשר לקשר כמה צמידים?</span><span class="en">Can I link several wristbands?</span></summary>
+      <p><span class="he">בהחלט — קשרו את הצמידים של כל המשפחה לאותו מכשיר ותראו את המדיה של כולם, כל צמיד בנפרד.</span>
+      <span class="en">Absolutely — link the whole family's bands to one device and see everyone's media, each band separately.</span></p>
+    </details>
+
+    <details>
+      <summary><span class="he">כל גלישה מצולמת?</span><span class="en">Is every ride captured?</span></summary>
+      <p><span class="he">המצלמות פועלות במגלשות נבחרות ותלויות בזיהוי הצמיד ובתנאים טכניים, ולכן איננו מתחייבים שכל גלישה תתועד. מה שצולם — מופיע בתצוגה מקדימה לפני שאתם משלמים.</span>
+      <span class="en">Cameras run on selected slides and depend on band detection and technical conditions, so we can't promise every run is captured. Whatever was captured shows as a preview before you pay.</span></p>
+    </details>
+
+    <details>
+      <summary><span class="he">איך משלמים? זה מאובטח?</span><span class="en">How do I pay? Is it secure?</span></summary>
+      <p><span class="he">התשלום מתבצע בתוך האפליקציה באמצעות טרנזילה, סולקת בתקן PCI-DSS Level 1 — בכרטיס אשראי או Google Pay. פרטי הכרטיס לא נשמרים אצלנו.</span>
+      <span class="en">You pay in-app via Tranzila, a PCI-DSS Level 1 processor — credit card or Google Pay. Your card details never reach our servers.</span></p>
+    </details>
+
+    <details>
+      <summary><span class="he">קניתי — במה זה נפתח?</span><span class="en">I bought a package — where does it unlock?</span></summary>
+      <p><span class="he">מיד עם אישור התשלום, בכל המכשירים שמקושרים לאותו צמיד: הסרטונים המלאים מחליפים את התצוגות המקדימות והתמונות נפתחות באיכות מלאה.</span>
+      <span class="en">Instantly after payment, on every device linked to that band: full reels replace the previews and photos unlock in full quality.</span></p>
+    </details>
+  </div>
+</section>
+
+<!-- ─── Footer ──────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="logo">🌊 <strong>WaterCap</strong></div>
+      <p><span class="he">הזיכרונות שלכם מהפארק — מצולמים ומגיעים ישירות אליכם.</span>
+      <span class="en">Your waterpark memories, captured and delivered to you.</span></p>
+      <p class="copyright">© 2026 Peocl Ltd.</p>
+    </div>
+    <div class="footer-col">
+      <h4><span class="he">משפטי</span><span class="en">Legal</span></h4>
+      <a href="/legal/watercap-privacy-policy-he.pdf"><span class="he">מדיניות פרטיות</span><span class="en">Privacy Policy (HE)</span></a>
+      <a href="/legal/watercap-privacy-policy-en.pdf"><span class="he">Privacy Policy (EN)</span><span class="en">Privacy Policy (EN)</span></a>
+      <a href="/legal/watercap-terms-he.pdf"><span class="he">תנאי שימוש</span><span class="en">Terms &amp; Conditions (HE)</span></a>
+      <a href="/legal/watercap-terms-en.pdf"><span class="he">Terms &amp; Conditions (EN)</span><span class="en">Terms &amp; Conditions (EN)</span></a>
+    </div>
+    <div class="footer-col">
+      <h4><span class="he">קישורים</span><span class="en">Links</span></h4>
+      <a href="/app/"><span class="he">אפליקציית הרשת</span><span class="en">Web app</span></a>
+      <a href="https://www.waterland.co.il/" target="_blank" rel="noopener">Waterland Eilat</a>
+      <a href="mailto:support@peocl.com"><span class="he">תמיכה</span><span class="en">Support</span></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Language toggle: Hebrew (RTL, default) <-> English (LTR).
+// Every translatable element has paired .he / .en children; CSS hides the
+// inactive language based on body[data-lang].
+(function () {
+  const btn = document.getElementById('lang-toggle')
+
+  function apply(lang) {
+    document.body.dataset.lang = lang
+    document.documentElement.lang = lang
+    document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr'
+    btn.textContent = lang === 'he' ? 'EN' : 'עב'
+    document.title = lang === 'he'
+      ? 'WaterCap — הזיכרונות שלכם מווטרלנד, ישר לנייד'
+      : 'WaterCap — Your Waterland memories, straight to your phone'
+    try { localStorage.setItem('watercap.lang', lang) } catch { /* private mode */ }
+  }
+
+  let lang = 'he'
+  try { lang = localStorage.getItem('watercap.lang') || 'he' } catch { /* private mode */ }
+  apply(lang)
+
+  btn.addEventListener('click', () => {
+    apply(document.body.dataset.lang === 'he' ? 'en' : 'he')
+  })
+})()
+
+// Floating bubbles in the hero
+;(function () {
+  const hero = document.querySelector('.hero')
+  const wrap = document.createElement('div')
+  wrap.className = 'bubbles'
+  for (let i = 0; i < 14; i++) {
+    const b = document.createElement('div')
+    b.className = 'bubble'
+    const size = 8 + Math.random() * 34
+    b.style.width = b.style.height = size + 'px'
+    b.style.left = Math.random() * 100 + '%'
+    b.style.animationDuration = 9 + Math.random() * 14 + 's'
+    b.style.animationDelay = -Math.random() * 20 + 's'
+    wrap.appendChild(b)
+  }
+  hero.appendChild(wrap)
+})()
+
+// Scroll-reveal for cards and FAQ items
+;(function () {
+  const targets = document.querySelectorAll(
+    '.step, .product-card, .price-card:not(.featured), .app-card, #faq details, .partner-stats > div'
+  )
+  targets.forEach((el) => el.classList.add('reveal'))
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target) }
+    })
+  }, { threshold: 0.15 })
+  targets.forEach((el) => io.observe(el))
+})()
+
+// Nav shadow once the page scrolls
+;(function () {
+  const nav = document.querySelector('.nav')
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 10)
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+})()
+
+</script>
+</body>
+</html>

@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surfai — כל גל שתפסתם, ישר לנייד</title>
+  <meta name="description" content="Surfai מצלמת כל גל שאתם תופסים בסשן הגלישה בפארק הגלים. מוצאים את הסשן באפליקציה, צופים בקליפים של הגלים שלכם ופותחים את חבילת הגלים של הסשן.">
+  <meta property="og:title" content="Surfai — Every wave you caught, straight to your phone">
+  <meta property="og:description" content="Every wave in your surf session, filmed and clipped. Find your session in the app, watch your waves, and unlock your session's clip package.">
+  <meta property="og:url" content="https://surfai.peocl.com/">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%84%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+/* ── Surfai brand ───────────────────────────────────────────────────── */
+:root {
+  --teal: #00a8a8;
+  --dark: #073b4c;
+  --navy: #062a36;
+  --surface: #eefaf9;
+  --border: #cdeeec;
+  --text2: #46656e;
+  --muted: #86a0a8;
+  --sun: #ff9f43;
+  --gradient: linear-gradient(135deg, #06465e 0%, #00a8a8 60%, #2fd8c3 100%);
+  --shadow: 0 2px 12px rgba(0, 168, 168, 0.12);
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Heebo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Arial Hebrew", Arial, sans-serif;
+  color: var(--navy);
+  background: #fff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Language switching: paired .he / .en elements */
+body[data-lang="he"] .en { display: none !important; }
+body[data-lang="en"] .he { display: none !important; }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+a { color: var(--teal); text-decoration: none; }
+
+h2 { font-size: clamp(24px, 4vw, 34px); font-weight: 800; color: var(--dark); text-align: center; }
+.section-sub { text-align: center; color: var(--text2); margin-top: 8px; font-size: 17px; }
+
+/* ── Buttons ────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border-radius: 12px; padding: 13px 24px;
+  font-size: 16px; font-weight: 700; cursor: pointer; border: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--gradient); color: #fff; box-shadow: 0 4px 16px rgba(0, 168, 168, 0.35); }
+.btn-outline { background: #fff; color: var(--teal); border: 1.5px solid var(--border); }
+.btn-small { padding: 9px 16px; font-size: 14px; background: var(--gradient); color: #fff; }
+
+/* ── Nav ────────────────────────────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav.scrolled { box-shadow: 0 6px 24px rgba(7, 59, 76, 0.12); }
+.nav-inner { display: flex; align-items: center; gap: 24px; height: 64px; }
+.logo { font-size: 19px; color: var(--dark); letter-spacing: 0.2px; }
+.nav-links { display: flex; gap: 22px; margin-inline-start: auto; }
+.nav-links a { color: var(--text2); font-weight: 600; font-size: 15px; }
+.nav-links a:hover { color: var(--teal); }
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.lang-btn {
+  background: #fff; border: 1.5px solid var(--border); color: var(--text2);
+  border-radius: 10px; padding: 8px 12px; font-weight: 700; font-size: 13px; cursor: pointer;
+}
+.lang-btn:hover { border-color: var(--teal); color: var(--teal); }
+@media (max-width: 720px) { .nav-links { display: none; } }
+
+/* ── Hero ───────────────────────────────────────────────────────────── */
+.hero { position: relative; background: var(--gradient); color: #fff; overflow: hidden; }
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(600px 300px at 85% 10%, rgba(255, 255, 255, 0.14), transparent 70%),
+    radial-gradient(500px 400px at 10% 90%, rgba(47, 216, 195, 0.28), transparent 70%);
+}
+.hero-inner {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px;
+  align-items: center; padding-top: 64px; padding-bottom: 110px;
+}
+@media (max-width: 860px) { .hero-inner { grid-template-columns: 1fr; padding-bottom: 90px; } }
+
+.partner-chip {
+  display: inline-block; background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 30px; padding: 7px 16px; font-size: 14px; margin-bottom: 20px;
+}
+.hero h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.15; font-weight: 800; }
+.hero-sub { margin-top: 16px; font-size: 18px; opacity: 0.93; max-width: 560px; }
+.hero-ctas { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+.store-badges { display: flex; gap: 10px; flex-wrap: wrap; }
+.store-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff; border-radius: 10px; padding: 7px 14px;
+  transition: transform 0.15s, background 0.15s;
+}
+.store-badge:hover { transform: translateY(-1px); background: rgba(0, 0, 0, 0.5); }
+.store-badge > span:first-child { font-size: 20px; }
+.store-text { display: flex; flex-direction: column; line-height: 1.15; }
+.store-text small { font-size: 10px; opacity: 0.8; }
+.store-text strong { font-size: 14px; }
+
+.hero-facts { display: flex; gap: 34px; margin-top: 34px; }
+.hero-facts > div { display: flex; flex-direction: column; }
+.hero-facts strong { font-size: 26px; font-weight: 800; }
+.hero-facts span { font-size: 13px; opacity: 0.85; }
+
+/* phone mockup */
+.hero-phone { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.phone {
+  width: 250px; background: var(--surface); border-radius: 28px;
+  border: 6px solid #04202b; box-shadow: 0 24px 60px rgba(0, 25, 35, 0.45);
+  overflow: hidden; color: var(--navy); font-size: 13px;
+  transform: rotate(4deg);
+  animation: phone-float 5s ease-in-out infinite;
+}
+@keyframes phone-float {
+  0%, 100% { transform: rotate(4deg) translateY(0); }
+  50%      { transform: rotate(4deg) translateY(-12px); }
+}
+.hero-phone::after {
+  content: ""; display: block; position: absolute;
+  width: 180px; height: 22px; border-radius: 50%;
+  background: rgba(0, 25, 35, 0.35); filter: blur(12px);
+  margin-top: 8px; align-self: flex-end;
+  animation: shadow-breathe 5s ease-in-out infinite;
+}
+@keyframes shadow-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50%      { transform: scale(0.85); opacity: 0.5; }
+}
+.phone-header {
+  background: var(--gradient); color: #fff; padding: 14px 14px 10px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.phone-session { font-weight: 800; }
+.phone-day { font-size: 11px; }
+.phone-tabs { display: flex; background: #d4f2ef; margin: 10px; border-radius: 10px; padding: 3px; }
+.phone-tabs span { flex: 1; text-align: center; padding: 6px; border-radius: 8px; font-weight: 700; font-size: 12px; color: var(--text2); }
+.phone-tabs span.active { background: #fff; color: var(--navy); }
+.phone-clip { background: #fff; margin: 0 10px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+.phone-video {
+  background: linear-gradient(160deg, #04303f, #086a72); color: #fff;
+  aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: 20px;
+}
+.phone-video em { font-size: 11px; font-style: normal; opacity: 0.8; }
+.phone-thumbs { display: flex; gap: 2px; margin-top: 2px; }
+.phone-thumbs i {
+  flex: 1; aspect-ratio: 1.6; background: #c8ebe7; font-style: normal;
+  display: flex; align-items: center; justify-content: center; font-size: 22px;
+}
+.phone-meta { display: flex; justify-content: space-between; padding: 8px 12px; font-weight: 600; }
+.phone-buybar {
+  display: flex; justify-content: space-between; align-items: center;
+  margin: 10px; padding: 10px 14px; background: #fff; border-radius: 12px;
+  font-weight: 700; box-shadow: var(--shadow);
+}
+.phone-buybar b { color: var(--teal); font-size: 16px; }
+
+.wave-divider { position: absolute; bottom: -1px; left: 0; right: 0; line-height: 0; }
+.wave-divider svg { width: 100%; height: 60px; }
+
+/* ── Sections ───────────────────────────────────────────────────────── */
+.section { padding: 72px 0; }
+.section-alt { background: var(--surface); }
+h1, h2, h3 { letter-spacing: -0.01em; }
+.section-overline {
+  display: block; text-align: center; color: var(--teal);
+  font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* steps */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+@media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
+.step {
+  position: relative; background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 28px 22px 22px; box-shadow: var(--shadow);
+}
+.step-num {
+  position: absolute; top: 18px; inset-inline-end: 18px;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--gradient); color: #fff; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+}
+.step h3 { font-size: 18px; color: var(--dark); margin-bottom: 8px; }
+.step p { color: var(--text2); font-size: 15px; }
+.step::after {
+  content: ""; position: absolute; inset-inline-start: 0; top: 0;
+  width: 100%; height: 4px; border-radius: 4px 4px 0 0;
+  background: var(--gradient); opacity: 0; transition: opacity 0.25s;
+}
+.step:hover::after { opacity: 1; }
+
+/* products */
+.products { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 40px; }
+@media (max-width: 820px) { .products { grid-template-columns: 1fr; } }
+.product-card {
+  background: #fff; border-radius: var(--radius); padding: 30px 26px;
+  box-shadow: var(--shadow); border: 1.5px solid var(--border);
+}
+.product-card h3 { font-size: 21px; color: var(--dark); margin-bottom: 10px; }
+.product-card p { color: var(--text2); font-size: 15px; }
+.product-card ul { list-style: none; margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+.product-card li { font-size: 15px; font-weight: 600; }
+
+/* apps */
+.apps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+@media (max-width: 820px) { .apps-row { grid-template-columns: 1fr; } }
+.app-card {
+  background: #fff; border-radius: var(--radius); border: 1.5px solid var(--border);
+  box-shadow: var(--shadow); padding: 28px 22px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.app-card h3 { color: var(--dark); font-size: 19px; }
+.app-card p { color: var(--text2); font-size: 14px; min-height: 44px; }
+
+/* shared icon chips */
+.step-icon, .product-icon, .app-icon {
+  width: 76px; height: 76px; border-radius: 24px;
+  background: linear-gradient(150deg, #e0f8f5, #c9f0ea);
+  border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+  margin-bottom: 14px;
+}
+.app-card .app-icon { margin: 0 auto; }
+
+.step, .product-card, .app-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.step:hover, .product-card:hover, .app-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 168, 168, 0.18);
+}
+
+/* partner */
+.partner-section { background: var(--gradient); color: #fff; }
+.partner-section h2 { color: #fff; text-align: start; }
+.partner-inner {
+  display: grid; grid-template-columns: 1.4fr 0.6fr; gap: 40px; align-items: center;
+}
+@media (max-width: 820px) { .partner-inner { grid-template-columns: 1fr; } }
+.partner-inner p { margin: 14px 0 20px; opacity: 0.93; }
+.partner-section .btn-outline { border-color: rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.12); color: #fff; }
+.partner-stats { display: flex; flex-direction: column; gap: 14px; }
+.partner-stats > div {
+  background: rgba(255, 255, 255, 0.13); border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px; padding: 12px 18px; display: flex; align-items: baseline; gap: 10px;
+}
+.partner-stats strong { font-size: 22px; }
+.partner-stats span { font-size: 14px; opacity: 0.9; }
+
+/* FAQ */
+.faq-container { max-width: 760px; }
+#faq details {
+  background: #fff; border: 1.5px solid var(--border); border-radius: 12px;
+  padding: 16px 20px; margin-top: 12px; box-shadow: var(--shadow);
+}
+#faq details:first-of-type { margin-top: 36px; }
+#faq summary { font-weight: 700; cursor: pointer; color: var(--dark); font-size: 16px; position: relative; padding-inline-end: 30px; list-style: none; }
+#faq summary::-webkit-details-marker { display: none; }
+#faq summary::after {
+  content: "+"; position: absolute; inset-inline-end: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--surface); color: var(--teal);
+  font-weight: 800; display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s;
+}
+#faq details[open] summary::after { content: "−"; transform: translateY(-50%) rotate(180deg); }
+#faq details p { color: var(--text2); margin-top: 10px; font-size: 15px; }
+
+/* footer */
+.footer { background: #04202b; color: #cdeae4; padding: 48px 0 40px; }
+.footer-inner { display: grid; grid-template-columns: 1.4fr 0.8fr 0.8fr; gap: 36px; }
+@media (max-width: 720px) { .footer-inner { grid-template-columns: 1fr; } }
+.footer .logo { color: #fff; }
+.footer p { font-size: 14px; opacity: 0.8; margin-top: 10px; }
+.copyright { font-size: 12.5px; }
+.footer-col { display: flex; flex-direction: column; gap: 8px; }
+.footer-col h4 { color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.footer-col a { color: #93cdc4; font-size: 14px; }
+.footer-col a:hover { color: #fff; }
+
+/* hero foam */
+.foam { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.drop {
+  position: absolute; bottom: -60px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  animation: rise linear infinite;
+}
+@keyframes rise {
+  from { transform: translateY(0) translateX(0); opacity: 0; }
+  10%  { opacity: 1; }
+  to   { transform: translateY(-110vh) translateX(30px); opacity: 0; }
+}
+
+/* scroll reveal */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .drop, .phone, .hero-phone::after { animation: none; }
+}
+  </style>
+</head>
+<body data-lang="he">
+
+<!-- ─── Nav ─────────────────────────────────────────────────────────── -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="#top">🏄 <strong>Surfai</strong></a>
+    <nav class="nav-links">
+      <a href="#how"><span class="he">איך זה עובד</span><span class="en">How it works</span></a>
+      <a href="#product"><span class="he">מה מקבלים</span><span class="en">What you get</span></a>
+      <a href="#apps"><span class="he">האפליקציות</span><span class="en">Apps</span></a>
+      <a href="#faq"><span class="he">שאלות</span><span class="en">FAQ</span></a>
+    </nav>
+    <div class="nav-actions">
+      <button id="lang-toggle" class="lang-btn" type="button">EN</button>
+      <a class="btn btn-small" href="#apps">
+        <span class="he">הורידו את האפליקציה</span><span class="en">Get the app</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ─── Hero ────────────────────────────────────────────────────────── -->
+<section class="hero" id="top">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="partner-chip">
+        <span class="he">מצלמים ב־<strong>SRF Park TLV</strong> — פארק הגלים של תל אביב</span>
+        <span class="en">Filming at <strong>SRF Park TLV</strong> — Tel Aviv's wave park</span>
+      </div>
+      <h1>
+        <span class="he">אתם תופסים את הגל.<br>אנחנו תופסים אתכם.</span>
+        <span class="en">You catch the wave.<br>We catch you.</span>
+      </h1>
+      <p class="hero-sub">
+        <span class="he">קניתם שעת גלישה בפארק הגלים? המצלמות של Surfai מתעדות כל גל שאתם תופסים בסשן. פותחים את האפליקציה, מוצאים את הסשן שלכם — וכל הגלים שלכם שם, חתוכים לקליפים ומוכנים לצפייה.</span>
+        <span class="en">Booked an hour of surfing at the wave park? Surfai's cameras film every wave you catch during your session. Open the app, find your session — and all your waves are there, cut into clips and ready to watch.</span>
+      </p>
+      <div class="hero-ctas">
+        <div class="store-badges">
+          <a class="store-badge" href="https://apps.apple.com/il/app/surfai/id6741872795" target="_blank" rel="noopener" aria-label="Download Surfai on the App Store">
+            <span><svg width="18" height="21" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></span>
+            <span class="store-text"><small class="he">הורידו מה־</small><small class="en">Download on the</small><strong>App Store</strong></span>
+          </a>
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.peocl.surfai" target="_blank" rel="noopener" aria-label="Get Surfai on Google Play">
+            <span>▶</span>
+            <span class="store-text"><small class="he">הורידו מ־</small><small class="en">Get it on</small><strong>Google Play</strong></span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-facts">
+        <div><strong>60</strong><span class="he">דקות של סשן</span><span class="en">minutes per session</span></div>
+        <div><strong>100%</strong><span class="he">מהגלים שלכם מצולמים</span><span class="en">of your waves filmed</span></div>
+        <div><strong>1</strong><span class="he">חבילה — כל הקליפים</span><span class="en">package — all your clips</span></div>
+      </div>
+    </div>
+
+    <!-- CSS phone mockup -->
+    <div class="hero-phone" aria-hidden="true">
+      <div class="phone">
+        <div class="phone-header">
+          <span class="phone-session"><span class="he">סשן 10:00</span><span class="en">10:00 session</span></span>
+          <span class="phone-day">📅 <span class="he">היום</span><span class="en">Today</span></span>
+        </div>
+        <div class="phone-tabs">
+          <span class="active">🌊 <span class="he">הגלים שלי</span><span class="en">My waves</span></span>
+          <span>🎬 <span class="he">הכול</span><span class="en">All</span></span>
+        </div>
+        <div class="phone-clip">
+          <div class="phone-video">▶<em class="he">גל 7 · 14 שנ׳</em><em class="en">Wave 7 · 14s</em></div>
+          <div class="phone-thumbs"><i>🏄</i><i>🌊</i></div>
+          <div class="phone-meta"><span class="he">גל 7</span><span class="en">Wave 7</span><b>10:23</b></div>
+        </div>
+        <div class="phone-buybar">
+          <span class="he">פתחו את כל הגלים</span><span class="en">Unlock all waves</span>
+          <b>🔓</b>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wave-divider"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,50 C240,90 480,0 720,30 C960,60 1200,20 1440,55 L1440,90 L0,90 Z" fill="#eefaf9"/></svg></div>
+</section>
+
+<!-- ─── How it works ────────────────────────────────────────────────── -->
+<section class="section" id="how">
+  <div class="container">
+    <span class="section-overline"><span class="he">פשוט וקל</span><span class="en">Simple &amp; easy</span></span>
+    <h2><span class="he">איך זה עובד?</span><span class="en">How it works</span></h2>
+    <p class="section-sub">
+      <span class="he">שלושה צעדים בין הגל לגלריה שלכם.</span>
+      <span class="en">Three steps from the wave to your gallery.</span>
+    </p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon">🏄</div>
+        <div class="step-num">1</div>
+        <h3><span class="he">גולשים את הסשן</span><span class="en">Surf your session</span></h3>
+        <p><span class="he">קונים שעת גלישה בפארק הגלים ונכנסים למים. המצלמות שלנו מכסות את הלגונה ומתעדות כל גל שנתפס בסשן — אתם רק צריכים לגלוש.</span>
+        <span class="en">Buy an hour of surfing at the wave park and paddle out. Our cameras cover the lagoon and film every wave ridden in the session — all you have to do is surf.</span></p>
+      </div>
+      <div class="step">
+        <div class="step-icon">🎬</div>
+        <div class="step-num">2</div>
+        <h3><span class="he">אנחנו חותכים לקליפים</span><span class="en">We cut the clips</span></h3>
+        <p><span class="he">כל גל הופך לקליפ נפרד — מהרגע שקמתם על הבורד ועד הסוף. הקליפים מסודרים לפי שעת הסשן, גל אחרי גל, ומחכים לכם באפליקציה.</span>
+        <span class="en">Every wave becomes its own clip — from the moment you pop up to the very end. Clips are organized by session hour, wave after wave, waiting in the app.</span></p>
+      </div>
+      <div class="step">
+        <div class="step-icon">📱</div>
+        <div class="step-num">3</div>
+        <h3><span class="he">צופים ופותחים</span><span class="en">Watch &amp; unlock</span></h3>
+        <p><span class="he">פותחים את אפליקציית Surfai, מוצאים את הסשן לפי התאריך והשעה, מזהים את עצמכם בקליפים — ופותחים את חבילת הגלים של הסשן בתשלום מאובטח.</span>
+        <span class="en">Open the Surfai app, find your session by date and hour, spot yourself in the clips — and unlock your session's wave package with a secure payment.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── What you get ────────────────────────────────────────────────── -->
+<section class="section section-alt" id="product">
+  <div class="container">
+    <span class="section-overline"><span class="he">חבילת הגלים</span><span class="en">The wave package</span></span>
+    <h2><span class="he">כל הגלים של הסשן שלכם, במקום אחד</span><span class="en">Every wave of your session, in one place</span></h2>
+    <div class="products">
+      <div class="product-card">
+        <div class="product-icon">🌊</div>
+        <h3><span class="he">קליפ לכל גל</span><span class="en">A clip for every wave</span></h3>
+        <p><span class="he">לא עוד סרטון אחד ארוך ומשעמם של כל הסשן. כל גל שתפסתם הוא קליפ נפרד — קצר, חד, ומוכן לשיתוף:</span>
+        <span class="en">No more one long, boring video of the whole session. Every wave you caught is its own clip — short, sharp, and ready to share:</span></p>
+        <ul>
+          <li><span class="he">🎬 קליפ וידאו לכל גל שתפסתם בסשן</span><span class="en">🎬 A video clip for every wave you caught</span></li>
+          <li><span class="he">🕐 מסודר לפי שעת הגל — קל למצוא את הגל הטוב</span><span class="en">🕐 Ordered by wave time — easy to find the good one</span></li>
+          <li><span class="he">📲 הורדה למכשיר ושיתוף לאן שבא לכם</span><span class="en">📲 Download to your device and share anywhere</span></li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">📈</div>
+        <h3><span class="he">גם לשיפור הגלישה</span><span class="en">Level up your surfing too</span></h3>
+        <p><span class="he">הקליפים הם לא רק מזכרת — הם כלי אימון. צפו בכל גל מהסשן, ראו מה עבד ומה לא, והשוו בין סשנים לאורך זמן:</span>
+        <span class="en">The clips aren't just a keepsake — they're a training tool. Watch every wave from the session, see what worked and what didn't, and compare sessions over time:</span></p>
+        <ul>
+          <li><span class="he">🔁 צפייה חוזרת בכל גל, גל אחרי גל</span><span class="en">🔁 Replay every wave, one by one</span></li>
+          <li><span class="he">🧑‍🏫 מושלם לניתוח עם מאמן</span><span class="en">🧑‍🏫 Perfect for reviewing with a coach</span></li>
+          <li><span class="he">🏆 עקבו אחרי ההתקדמות שלכם מסשן לסשן</span><span class="en">🏆 Track your progress session after session</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Apps ────────────────────────────────────────────────────────── -->
+<section class="section" id="apps">
+  <div class="container">
+    <span class="section-overline"><span class="he">זמין עכשיו</span><span class="en">Available now</span></span>
+    <h2><span class="he">בכל מכשיר שתבחרו</span><span class="en">On any device you choose</span></h2>
+    <div class="apps-row">
+      <div class="app-card">
+        <div class="app-icon">📱</div>
+        <h3>iPhone</h3>
+        <p><span class="he">אפליקציית iOS — מוצאים את הסשן, צופים וקונים.</span><span class="en">iOS app — find your session, watch, and buy.</span></p>
+        <a class="btn btn-primary" href="https://apps.apple.com/il/app/surfai/id6741872795" target="_blank" rel="noopener"><span class="he">הורידו מה־App Store</span><span class="en">Download on the App Store</span></a>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">🤖</div>
+        <h3>Android</h3>
+        <p><span class="he">אפליקציית Android — כל הגלים שלכם בכיס.</span><span class="en">Android app — all your waves in your pocket.</span></p>
+        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.peocl.surfai" target="_blank" rel="noopener"><span class="he">הורידו מ־Google Play</span><span class="en">Get it on Google Play</span></a>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">🌐</div>
+        <h3><span class="he">דפדפן</span><span class="en">Web</span></h3>
+        <p><span class="he">בלי התקנה — נכנסים מכל דפדפן, צופים ופותחים.</span><span class="en">No install — open in any browser, watch, and unlock.</span></p>
+        <a class="btn btn-outline" href="#"><span class="he">בקרוב</span><span class="en">Coming soon</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Partner ─────────────────────────────────────────────────────── -->
+<section class="section partner-section">
+  <div class="container partner-inner">
+    <div>
+      <h2><span class="he">גאים לצלם ב־SRF Park TLV</span><span class="en">Proud to film at SRF Park TLV</span></h2>
+      <p><span class="he">פארק הגלים של תל אביב מייצר גלים מושלמים בלגונה — אותו גל, שוב ושוב, בלי לחכות לתחזית. Surfai היא מערכת המדיה שמתעדת את הסשנים בפארק, כך שכל גל שתפסתם חוזר איתכם הביתה.</span>
+      <span class="en">Tel Aviv's wave park generates perfect waves in a lagoon — the same wave, again and again, no forecast required. Surfai is the media system filming the park's sessions, so every wave you catch comes home with you.</span></p>
+      <a class="btn btn-outline" href="https://www.srfparktlv.co.il/" target="_blank" rel="noopener">
+        <span class="he">לאתר הפארק ←</span><span class="en">Visit srfparktlv.co.il →</span>
+      </a>
+    </div>
+    <div class="partner-stats">
+      <div><strong>🌊 ∞</strong><span class="he">גלים מושלמים, כל היום</span><span class="en">perfect waves, all day</span></div>
+      <div><strong>🎥 60</strong><span class="he">דקות של תיעוד בכל סשן</span><span class="en">minutes filmed every session</span></div>
+      <div><strong>📱 2</strong><span class="he">אפליקציות — iOS ו־Android</span><span class="en">apps — iOS &amp; Android</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─────────────────────────────────────────────────────────── -->
+<section class="section" id="faq">
+  <div class="container faq-container">
+    <span class="section-overline"><span class="he">יש שאלה?</span><span class="en">Questions?</span></span>
+    <h2><span class="he">שאלות נפוצות</span><span class="en">FAQ</span></h2>
+
+    <details>
+      <summary><span class="he">איך אני מוצא את הגלים שלי?</span><span class="en">How do I find my waves?</span></summary>
+      <p><span class="he">פותחים את אפליקציית Surfai ובוחרים את הסשן לפי התאריך והשעה שבהם גלשתם. כל הקליפים של הסשן מוצגים לפי שעת הגל — מזהים את עצמכם וסוגרים עניין.</span>
+      <span class="en">Open the Surfai app and pick your session by the date and hour you surfed. All the session's clips are listed by wave time — spot yourself and you're set.</span></p>
+    </details>
+
+    <details>
+      <summary><span class="he">כל גל באמת מצולם?</span><span class="en">Is every wave really filmed?</span></summary>
+      <p><span class="he">המצלמות שלנו מכסות את הלגונה ופועלות לאורך כל הסשן. הצילום תלוי בתנאים טכניים, ולכן ייתכן שגל בודד יתפספס — אבל מה שצולם מופיע באפליקציה לפני שאתם משלמים, כך שאתם יודעים בדיוק מה אתם מקבלים.</span>
+      <span class="en">Our cameras cover the lagoon and run through the whole session. Capture depends on technical conditions, so a single wave might slip through — but whatever was filmed shows in the app before you pay, so you know exactly what you're getting.</span></p>
+    </details>
+
+    <details>
+      <summary><span class="he">מה כוללת חבילת הגלים?</span><span class="en">What's in the wave package?</span></summary>
+      <p><span class="he">את כל קליפי הגלים שלכם מהסשן — כל גל כקליפ נפרד, באיכות מלאה, להורדה ולשיתוף. המחיר מוצג באפליקציה לפני הרכישה.</span>
+      <span class="en">All your wave clips from the session — each wave as its own clip, in full quality, to download and share. The price is shown in the app before you buy.</span></p>
+    </details>
+
+    <details>
+      <summary><span class="he">איך משלמים? זה מאובטח?</span><span class="en">How do I pay? Is it secure?</span></summary>
+      <p><span class="he">התשלום מתבצע בתוך האפליקציה בתשלום מאובטח. פרטי הכרטיס שלכם לא נשמרים אצלנו.</span>
+      <span class="en">You pay inside the app with a secure checkout. Your card details never reach our servers.</span></p>
+    </details>
+
+    <details>
+      <summary><span class="he">גלשתי עם חברים — אפשר לראות גם אותם?</span><span class="en">I surfed with friends — can I see them too?</span></summary>
+      <p><span class="he">הקליפים מסודרים לפי סשן, אז כל מי שגלש איתכם באותה שעה נמצא באותו סשן באפליקציה. כל אחד מזהה את הגלים שלו ופותח את החבילה שלו.</span>
+      <span class="en">Clips are organized by session, so everyone who surfed your hour is in the same session in the app. Each surfer spots their own waves and unlocks their own package.</span></p>
+    </details>
+
+    <details>
+      <summary><span class="he">כמה זמן הקליפים זמינים?</span><span class="en">How long are the clips available?</span></summary>
+      <p><span class="he">הקליפים זמינים באפליקציה לזמן מוגבל אחרי הסשן ואז נמחקים. אל תחכו — צפו, פתחו והורידו את הגלים שלכם בהקדם.</span>
+      <span class="en">Clips stay in the app for a limited time after your session and are then deleted. Don't wait — watch, unlock, and download your waves soon after you surf.</span></p>
+    </details>
+  </div>
+</section>
+
+<!-- ─── Footer ──────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="logo">🏄 <strong>Surfai</strong></div>
+      <p><span class="he">כל גל שתפסתם בפארק הגלים — מצולם, חתוך לקליפ, ומחכה לכם באפליקציה.</span>
+      <span class="en">Every wave you catch at the wave park — filmed, clipped, and waiting in the app.</span></p>
+      <p class="copyright">© 2026 Peocl Ltd.</p>
+    </div>
+    <div class="footer-col">
+      <h4><span class="he">האפליקציה</span><span class="en">Get the app</span></h4>
+      <a href="https://apps.apple.com/il/app/surfai/id6741872795" target="_blank" rel="noopener">App Store (iOS)</a>
+      <a href="https://play.google.com/store/apps/details?id=com.peocl.surfai" target="_blank" rel="noopener">Google Play (Android)</a>
+    </div>
+    <div class="footer-col">
+      <h4><span class="he">קישורים</span><span class="en">Links</span></h4>
+      <a href="https://www.srfparktlv.co.il/" target="_blank" rel="noopener">SRF Park TLV</a>
+      <a href="mailto:support@peocl.com"><span class="he">תמיכה</span><span class="en">Support</span></a>
+      <a href="mailto:hello@peocl.com"><span class="he">שיתופי פעולה</span><span class="en">Partnerships</span></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Language toggle: Hebrew (RTL, default) <-> English (LTR).
+// Every translatable element has paired .he / .en children; CSS hides the
+// inactive language based on body[data-lang].
+(function () {
+  const btn = document.getElementById('lang-toggle')
+
+  function apply(lang) {
+    document.body.dataset.lang = lang
+    document.documentElement.lang = lang
+    document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr'
+    btn.textContent = lang === 'he' ? 'EN' : 'עב'
+    document.title = lang === 'he'
+      ? 'Surfai — כל גל שתפסתם, ישר לנייד'
+      : 'Surfai — Every wave you caught, straight to your phone'
+    try { localStorage.setItem('surfai.lang', lang) } catch { /* private mode */ }
+  }
+
+  let lang = 'he'
+  try { lang = localStorage.getItem('surfai.lang') || 'he' } catch { /* private mode */ }
+  apply(lang)
+
+  btn.addEventListener('click', () => {
+    apply(document.body.dataset.lang === 'he' ? 'en' : 'he')
+  })
+})()
+
+// Sea-spray drops floating up in the hero
+;(function () {
+  const hero = document.querySelector('.hero')
+  const wrap = document.createElement('div')
+  wrap.className = 'foam'
+  for (let i = 0; i < 14; i++) {
+    const d = document.createElement('div')
+    d.className = 'drop'
+    const size = 8 + Math.random() * 34
+    d.style.width = d.style.height = size + 'px'
+    d.style.left = Math.random() * 100 + '%'
+    d.style.animationDuration = 9 + Math.random() * 14 + 's'
+    d.style.animationDelay = -Math.random() * 20 + 's'
+    wrap.appendChild(d)
+  }
+  hero.appendChild(wrap)
+})()
+
+// Scroll-reveal for cards and FAQ items
+;(function () {
+  const targets = document.querySelectorAll(
+    '.step, .product-card, .app-card, #faq details, .partner-stats > div'
+  )
+  targets.forEach((el) => el.classList.add('reveal'))
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target) }
+    })
+  }, { threshold: 0.15 })
+  targets.forEach((el) => io.observe(el))
+})()
+
+// Nav shadow once the page scrolls
+;(function () {
+  const nav = document.querySelector('.nav')
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 10)
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+})()
+</script>
+</body>
+</html>
