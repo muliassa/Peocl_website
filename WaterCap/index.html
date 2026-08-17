@@ -13,24 +13,36 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="a11y.css">
+  <script src="a11y.js"></script>
   <style>
 /* ── WaterCap brand ─────────────────────────────────────────────────── */
 :root {
   --blue: #0095d9;
+  /* Contrast-safe partner of --blue, for text and icons on light backgrounds
+     (AA on both #fff and --surface). --blue itself stays the brand colour for
+     fills, borders and large decorative shapes. */
+  --blue-text: #0076b3;
   --dark: #003d6b;
   --navy: #0d1b2a;
   --surface: #eff9ff;
   --border: #d0eeff;
   --text2: #4a6070;
-  --muted: #8ba0b0;
-  --gradient: linear-gradient(135deg, #004f8c 0%, #0095d9 60%, #00c5e8 100%);
+  --muted: #5d7382;
+  /* Gradient stops are capped at the lightness where white body text still
+     clears 4.5:1 — the hero, buttons and partner band all put white text
+     on it. */
+  --gradient: linear-gradient(135deg, #00426f 0%, #00688a 55%, #00708b 100%);
   --shadow: 0 2px 12px rgba(0, 149, 217, 0.1);
   --radius: 16px;
+  --a11y-focus: #003d6b;
+  --a11y-accent: #004f8c;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
   font-family: "Heebo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Arial Hebrew", Arial, sans-serif;
@@ -46,7 +58,7 @@ body[data-lang="en"] .he { display: none !important; }
 
 .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
-a { color: var(--blue); text-decoration: none; }
+a { color: var(--blue-text); text-decoration: none; }
 
 h2 { font-size: clamp(24px, 4vw, 34px); font-weight: 800; color: var(--dark); text-align: center; }
 .section-sub { text-align: center; color: var(--text2); margin-top: 8px; font-size: 17px; }
@@ -60,7 +72,7 @@ h2 { font-size: clamp(24px, 4vw, 34px); font-weight: 800; color: var(--dark); te
 }
 .btn:hover { transform: translateY(-1px); }
 .btn-primary { background: var(--gradient); color: #fff; box-shadow: 0 4px 16px rgba(0, 149, 217, 0.35); }
-.btn-outline { background: #fff; color: var(--blue); border: 1.5px solid var(--border); }
+.btn-outline { background: #fff; color: var(--blue-text); border: 1.5px solid var(--border); }
 .btn-small { padding: 9px 16px; font-size: 14px; background: var(--gradient); color: #fff; }
 
 /* ── Nav ────────────────────────────────────────────────────────────── */
@@ -73,13 +85,13 @@ h2 { font-size: clamp(24px, 4vw, 34px); font-weight: 800; color: var(--dark); te
 .logo { font-size: 19px; color: var(--dark); letter-spacing: 0.2px; }
 .nav-links { display: flex; gap: 22px; margin-inline-start: auto; }
 .nav-links a { color: var(--text2); font-weight: 600; font-size: 15px; }
-.nav-links a:hover { color: var(--blue); }
+.nav-links a:hover { color: var(--blue-text); }
 .nav-actions { display: flex; align-items: center; gap: 10px; }
 .lang-btn {
   background: #fff; border: 1.5px solid var(--border); color: var(--text2);
   border-radius: 10px; padding: 8px 12px; font-weight: 700; font-size: 13px; cursor: pointer;
 }
-.lang-btn:hover { border-color: var(--blue); color: var(--blue); }
+.lang-btn:hover { border-color: var(--blue-text); color: var(--blue-text); }
 @media (max-width: 720px) { .nav-links { display: none; } }
 
 /* ── Hero ───────────────────────────────────────────────────────────── */
@@ -91,29 +103,29 @@ h2 { font-size: clamp(24px, 4vw, 34px); font-weight: 800; color: var(--dark); te
 @media (max-width: 860px) { .hero-inner { grid-template-columns: 1fr; padding-bottom: 90px; } }
 
 .partner-chip {
-  display: inline-block; background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  display: inline-block; background: rgba(0, 30, 43, 0.30);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 30px; padding: 7px 16px; font-size: 14px; margin-bottom: 20px;
 }
 .hero h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.15; font-weight: 800; }
-.hero-sub { margin-top: 16px; font-size: 18px; opacity: 0.93; max-width: 560px; }
+.hero-sub { margin-top: 16px; font-size: 18px; max-width: 560px; }
 .hero-ctas { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 
 .store-badges { display: flex; gap: 10px; }
 .store-badge {
   display: flex; align-items: center; gap: 8px;
-  background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.55); border: 1px solid rgba(255, 255, 255, 0.45);
   color: #fff; border-radius: 10px; padding: 7px 14px;
 }
 .store-badge > span:first-child { font-size: 20px; }
 .store-text { display: flex; flex-direction: column; line-height: 1.15; }
-.store-text small { font-size: 10px; opacity: 0.8; }
+.store-text small { font-size: 11px; }
 .store-text strong { font-size: 14px; }
 
 .hero-facts { display: flex; gap: 34px; margin-top: 34px; }
 .hero-facts > div { display: flex; flex-direction: column; }
 .hero-facts strong { font-size: 26px; font-weight: 800; }
-.hero-facts span { font-size: 13px; opacity: 0.85; }
+.hero-facts span { font-size: 13px; }
 
 /* phone mockup */
 .hero-phone { display: flex; justify-content: center; }
@@ -150,7 +162,7 @@ h2 { font-size: clamp(24px, 4vw, 34px); font-weight: 800; color: var(--dark); te
   margin: 10px; padding: 10px 14px; background: #fff; border-radius: 12px;
   font-weight: 700; box-shadow: var(--shadow);
 }
-.phone-buybar b { color: var(--blue); font-size: 16px; }
+.phone-buybar b { color: var(--blue-text); font-size: 16px; }
 
 .wave-divider { position: absolute; bottom: -1px; left: 0; right: 0; line-height: 0; }
 .wave-divider svg { width: 100%; height: 60px; }
@@ -237,15 +249,15 @@ body[data-lang="he"] .best-badge { transform: translateX(50%); }
   display: grid; grid-template-columns: 1.4fr 0.6fr; gap: 40px; align-items: center;
 }
 @media (max-width: 820px) { .partner-inner { grid-template-columns: 1fr; } }
-.partner-inner p { margin: 14px 0 20px; opacity: 0.93; }
-.partner-section .btn-outline { border-color: rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.12); color: #fff; }
+.partner-inner p { margin: 14px 0 20px; }
+.partner-section .btn-outline { border-color: rgba(255, 255, 255, 0.6); background: rgba(0, 0, 0, 0.2); color: #fff; }
 .partner-stats { display: flex; flex-direction: column; gap: 14px; }
 .partner-stats > div {
-  background: rgba(255, 255, 255, 0.13); border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 30, 43, 0.25); border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 12px; padding: 12px 18px; display: flex; align-items: baseline; gap: 10px;
 }
 .partner-stats strong { font-size: 22px; }
-.partner-stats span { font-size: 14px; opacity: 0.9; }
+.partner-stats span { font-size: 14px; }
 
 /* FAQ */
 .faq-container { max-width: 760px; }
@@ -265,7 +277,7 @@ body[data-lang="he"] .best-badge { transform: translateX(50%); }
 .footer p { font-size: 14px; opacity: 0.8; margin-top: 10px; }
 .copyright { font-size: 12.5px; }
 .footer-col { display: flex; flex-direction: column; gap: 8px; }
-.footer-col h4 { color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.footer-col h3 { color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
 .footer-col a { color: #9fc9e4; font-size: 14px; }
 .footer-col a:hover { color: #fff; }
 
@@ -273,7 +285,7 @@ body[data-lang="he"] .best-badge { transform: translateX(50%); }
 h1, h2, h3 { letter-spacing: -0.01em; }
 h2 { position: relative; }
 .section-overline {
-  display: block; text-align: center; color: var(--blue);
+  display: block; text-align: center; color: var(--blue-text);
   font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
   margin-bottom: 10px;
 }
@@ -282,8 +294,8 @@ h2 { position: relative; }
 .hero::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background:
-    radial-gradient(600px 300px at 85% 10%, rgba(255, 255, 255, 0.14), transparent 70%),
-    radial-gradient(500px 400px at 10% 90%, rgba(0, 197, 232, 0.25), transparent 70%);
+    radial-gradient(600px 300px at 85% 10%, rgba(255, 255, 255, 0.07), transparent 70%),
+    radial-gradient(500px 400px at 10% 90%, rgba(0, 197, 232, 0.14), transparent 70%);
 }
 .bubbles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 .bubble {
@@ -357,7 +369,7 @@ h2 { position: relative; }
   content: "+"; position: absolute; inset-inline-end: 0; top: 50%;
   transform: translateY(-50%);
   width: 24px; height: 24px; border-radius: 50%;
-  background: var(--surface); color: var(--blue);
+  background: var(--surface); color: var(--blue-text);
   font-weight: 800; display: flex; align-items: center; justify-content: center;
   transition: transform 0.2s;
 }
@@ -375,24 +387,30 @@ h2 { position: relative; }
 </head>
 <body data-lang="he">
 
+<a class="a11y-skip" href="#main">
+  <span class="he">דלגו לתוכן הראשי</span><span class="en">Skip to main content</span>
+</a>
+
 <!-- ─── Nav ─────────────────────────────────────────────────────────── -->
 <header class="nav">
   <div class="container nav-inner">
-    <a class="logo" href="#top">🌊 <strong>WaterCap</strong></a>
-    <nav class="nav-links">
+    <a class="logo" href="#top" aria-label="WaterCap"><span aria-hidden="true">🌊</span> <strong>WaterCap</strong></a>
+    <nav class="nav-links" id="main-nav">
       <a href="#how"><span class="he">איך זה עובד</span><span class="en">How it works</span></a>
       <a href="#products"><span class="he">המוצרים</span><span class="en">Products</span></a>
       <a href="#pricing"><span class="he">חבילות</span><span class="en">Packages</span></a>
       <a href="#faq"><span class="he">שאלות</span><span class="en">FAQ</span></a>
     </nav>
     <div class="nav-actions">
-      <button id="lang-toggle" class="lang-btn" type="button">EN</button>
+      <button id="lang-toggle" class="lang-btn" type="button" lang="en">EN</button>
       <a class="btn btn-small" href="https://watercap.peocl.com/app">
         <span class="he">לאפליקציית הרשת</span><span class="en">Open Web App</span>
       </a>
     </div>
   </div>
 </header>
+
+<main id="main">
 
 <!-- ─── Hero ────────────────────────────────────────────────────────── -->
 <section class="hero" id="top">
@@ -415,15 +433,17 @@ h2 { position: relative; }
           <span class="he">🎗️ קשרו את הצמיד שלכם</span>
           <span class="en">🎗️ Link your wristband</span>
         </a>
+        <!-- Not links: the apps aren't published yet, and an href="#" is a
+             dead end for keyboard and screen-reader users. -->
         <div class="store-badges">
-          <a class="store-badge" href="#" aria-label="App Store">
-            <span></span>
-            <span class="store-text"><small class="he">הורידו מה־</small><small class="en">Download on the</small><strong>App Store</strong></span>
-          </a>
-          <a class="store-badge" href="#" aria-label="Google Play">
-            <span>▶</span>
-            <span class="store-text"><small class="he">הורידו מ־</small><small class="en">Get it on</small><strong>Google Play</strong></span>
-          </a>
+          <span class="store-badge is-inert">
+            <span aria-hidden="true"><svg width="18" height="21" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></span>
+            <span class="store-text"><small class="he">בקרוב ב־</small><small class="en">Coming soon to the</small><strong>App Store</strong></span>
+          </span>
+          <span class="store-badge is-inert">
+            <span aria-hidden="true">▶</span>
+            <span class="store-text"><small class="he">בקרוב ב־</small><small class="en">Coming soon to</small><strong>Google Play</strong></span>
+          </span>
         </div>
       </div>
       <div class="hero-facts">
@@ -470,21 +490,21 @@ h2 { position: relative; }
     </p>
     <div class="steps">
       <div class="step">
-        <div class="step-icon">🎢</div>
+        <div class="step-icon" aria-hidden="true">🎢</div>
         <div class="step-num">1</div>
         <h3><span class="he">סורקים את הצמיד וגולשים</span><span class="en">Scan your wristband &amp; ride</span></h3>
         <p><span class="he">עונדים את צמיד הפארק וסורקים אותו בעמדה שבכניסה למגלשה — ככה אנחנו יודעים באיזו מגלשה אתם. גולשים, והמצלמות מתעדות את הגלישה — וידאו מלא ותמונות מהמסלול ומהפסגה.</span>
         <span class="en">Wear your park wristband and scan it at the station by the slide entrance — that's how we know which slide you're on. Ride, and our cameras capture the run — a full video plus ride and top photos.</span></p>
       </div>
       <div class="step">
-        <div class="step-icon">📡</div>
+        <div class="step-icon" aria-hidden="true">📡</div>
         <div class="step-num">2</div>
         <h3><span class="he">מקשרים את הצמיד</span><span class="en">Link the wristband</span></h3>
         <p><span class="he">מורידים את האפליקציה (iOS / Android) או נכנסים מהדפדפן, מקלידים את מספר עמדת הסריקה שבפארק ומצמידים את הצמיד. שנייה — ואתם מחוברים.</span>
         <span class="en">Get the app (iOS / Android) or open the web app, type the number on a park scanner, and tap your band on it. One second — you're linked.</span></p>
       </div>
       <div class="step">
-        <div class="step-icon">🎬</div>
+        <div class="step-icon" aria-hidden="true">🎬</div>
         <div class="step-num">3</div>
         <h3><span class="he">צופים ופותחים</span><span class="en">Watch &amp; unlock</span></h3>
         <p><span class="he">כל המדיה של היום מחכה באפליקציה — תצוגות מקדימות בחינם. בוחרים חבילה, משלמים מאובטח, ומורידים באיכות מלאה לכל המכשירים המקושרים.</span>
@@ -501,7 +521,7 @@ h2 { position: relative; }
     <h2><span class="he">שני מוצרים, יום שלם של זיכרונות</span><span class="en">Two products, a full day of memories</span></h2>
     <div class="products">
       <div class="product-card">
-        <div class="product-icon">🎢</div>
+        <div class="product-icon" aria-hidden="true">🎢</div>
         <h3><span class="he">סרטוני מגלשות</span><span class="en">Waterslide videos</span></h3>
         <p><span class="he">מערכת המצלמות שלנו מותקנת על מגלשות ווטרלנד — מהקמיקזה בגובה 24 מטר ועד מגלשות האבובים המשפחתיות. כל גלישה הופכת לכרטיס משלו באפליקציה:</span>
         <span class="en">Our camera rigs live on Waterland's slides — from the 24-meter Kamikaze to the family tube slides. Every run becomes its own card in the app:</span></p>
@@ -512,7 +532,7 @@ h2 { position: relative; }
         </ul>
       </div>
       <div class="product-card">
-        <div class="product-icon">📷</div>
+        <div class="product-icon" aria-hidden="true">📷</div>
         <h3><span class="he">צלם הפארק</span><span class="en">Park photographer</span></h3>
         <p><span class="he">צלם מקצועי מסתובב בפארק ומצלם אתכם ברגעים הכי טובים — בבריכת הגלים, באזורי הילדים ובין המתקנים. הצילומים מזוהים לצמיד שלכם ומופיעים בלשונית «צלם» באפליקציה, מוכנים לצפייה ולרכישה.</span>
         <span class="en">A professional photographer roams the park and catches your best moments — at the wave pool, the kids' zones, and everywhere in between. The shots are matched to your wristband and appear under the app's “Photographer” tab, ready to view and buy.</span></p>
@@ -521,9 +541,9 @@ h2 { position: relative; }
           <li><span class="he">👨‍👩‍👧‍👦 כל המשפחה בפריים — לא רק סלפי רטוב</span><span class="en">👨‍👩‍👧‍👦 The whole family in frame — not just a wet selfie</span></li>
         </ul>
         <div class="photog-gallery">
-          <a href="media/photographer-1.jpg" target="_blank" rel="noopener"><img src="media/photographer-1.jpg" alt="משפחה תחת מפרשי הצל בווטרלנד אילת" loading="lazy"></a>
-          <a href="media/photographer-2.jpg" target="_blank" rel="noopener"><img src="media/photographer-2.jpg" alt="משפחה ליד בריכת הגלים על רקע המגלשות" loading="lazy"></a>
-          <a href="media/photographer-3.jpg" target="_blank" rel="noopener"><img src="media/photographer-3.jpg" alt="משפחה באזור הישיבה מול מתחם הילדים" loading="lazy"></a>
+          <a href="media/photographer-1.jpg" target="_blank" rel="noopener"><img src="media/photographer-1.jpg" data-alt-he="משפחה תחת מפרשי הצל בווטרלנד אילת" data-alt-en="A family under the shade sails at Waterland Eilat" alt="משפחה תחת מפרשי הצל בווטרלנד אילת" loading="lazy"><span class="sr-only"><span class="he"> (נפתח בחלון חדש)</span><span class="en"> (opens in a new tab)</span></span></a>
+          <a href="media/photographer-2.jpg" target="_blank" rel="noopener"><img src="media/photographer-2.jpg" data-alt-he="משפחה ליד בריכת הגלים על רקע המגלשות" data-alt-en="A family beside the wave pool with the slides behind them" alt="משפחה ליד בריכת הגלים על רקע המגלשות" loading="lazy"><span class="sr-only"><span class="he"> (נפתח בחלון חדש)</span><span class="en"> (opens in a new tab)</span></span></a>
+          <a href="media/photographer-3.jpg" target="_blank" rel="noopener"><img src="media/photographer-3.jpg" data-alt-he="משפחה באזור הישיבה מול מתחם הילדים" data-alt-en="A family in the seating area facing the kids' zone" alt="משפחה באזור הישיבה מול מתחם הילדים" loading="lazy"><span class="sr-only"><span class="he"> (נפתח בחלון חדש)</span><span class="en"> (opens in a new tab)</span></span></a>
         </div>
       </div>
     </div>
@@ -541,20 +561,20 @@ h2 { position: relative; }
     </p>
     <div class="pricing">
       <div class="price-card">
-        <div class="price-emoji">📷</div>
+        <div class="price-emoji" aria-hidden="true">📷</div>
         <h3><span class="he">תמונות צלם</span><span class="en">Photographer Photos</span></h3>
         <p><span class="he">כל צילומי הצלם המקצועי של הצמיד שלכם ליום הביקור.</span>
         <span class="en">Every pro photographer shot of your wristband for the visit day.</span></p>
       </div>
       <div class="price-card">
-        <div class="price-emoji">🎢</div>
+        <div class="price-emoji" aria-hidden="true">🎢</div>
         <h3><span class="he">סרטוני מגלשות</span><span class="en">Waterslide Videos</span></h3>
         <p><span class="he">כל סרטוני ותמונות הגלישות שלכם מכל המגלשות, ליום הביקור.</span>
         <span class="en">All your ride videos and photos from every slide, for the visit day.</span></p>
       </div>
       <div class="price-card featured">
         <div class="best-badge"><span class="he">הכי פופולרי</span><span class="en">Most popular</span></div>
-        <div class="price-emoji">🌊</div>
+        <div class="price-emoji" aria-hidden="true">🌊</div>
         <h3><span class="he">הכול</span><span class="en">Everything</span></h3>
         <p><span class="he">כל התמונות והסרטונים — מגלשות + צלם — של הצמיד שלכם ליום הביקור.</span>
         <span class="en">Every photo and video — slides + photographer — for your wristband's visit day.</span></p>
@@ -573,19 +593,19 @@ h2 { position: relative; }
     <h2><span class="he">בכל מכשיר שתבחרו</span><span class="en">On any device you choose</span></h2>
     <div class="apps-row">
       <div class="app-card">
-        <div class="app-icon"></div>
+        <div class="app-icon" aria-hidden="true"></div>
         <h3>iPhone</h3>
         <p><span class="he">אפליקציית iOS — קישור צמיד, צפייה ורכישה.</span><span class="en">iOS app — link, watch, and buy.</span></p>
-        <a class="btn btn-outline" href="#"><span class="he">בקרוב ב־App Store</span><span class="en">Coming to the App Store</span></a>
+        <span class="btn btn-outline is-inert"><span class="he">בקרוב ב־App Store</span><span class="en">Coming to the App Store</span></span>
       </div>
       <div class="app-card">
-        <div class="app-icon">🤖</div>
+        <div class="app-icon" aria-hidden="true">🤖</div>
         <h3>Android</h3>
         <p><span class="he">אפליקציית Android — כולל סריקת NFC ישירות בטלפון.</span><span class="en">Android app — with on-phone NFC scanning.</span></p>
-        <a class="btn btn-outline" href="#"><span class="he">בקרוב ב־Google Play</span><span class="en">Coming to Google Play</span></a>
+        <span class="btn btn-outline is-inert"><span class="he">בקרוב ב־Google Play</span><span class="en">Coming to Google Play</span></span>
       </div>
       <div class="app-card">
-        <div class="app-icon">🌐</div>
+        <div class="app-icon" aria-hidden="true">🌐</div>
         <h3><span class="he">דפדפן</span><span class="en">Web</span></h3>
         <p><span class="he">בלי התקנה — נכנסים מכל דפדפן, מקשרים וצופים.</span><span class="en">No install — open in any browser, link, and watch.</span></p>
         <a class="btn btn-primary" href="https://watercap.peocl.com/app"><span class="he">פתחו עכשיו</span><span class="en">Open now</span></a>
@@ -603,6 +623,7 @@ h2 { position: relative; }
       <span class="en">Waterland — Eilat's largest and only waterpark: 23 slides across four zones, a wave pool and kids' area, 500m from the Dolphin Reef. WaterCap is the park's official media system.</span></p>
       <a class="btn btn-outline" href="https://www.waterland.co.il/" target="_blank" rel="noopener">
         <span class="he">לאתר ווטרלנד ←</span><span class="en">Visit waterland.co.il →</span>
+        <span class="sr-only"><span class="he"> (נפתח בחלון חדש)</span><span class="en"> (opens in a new tab)</span></span>
       </a>
     </div>
     <div class="partner-stats">
@@ -657,26 +678,29 @@ h2 { position: relative; }
   </div>
 </section>
 
+</main>
+
 <!-- ─── Footer ──────────────────────────────────────────────────────── -->
 <footer class="footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <div class="logo">🌊 <strong>WaterCap</strong></div>
+      <div class="logo"><span aria-hidden="true">🌊</span> <strong>WaterCap</strong></div>
       <p><span class="he">הזיכרונות שלכם מהפארק — מצולמים ומגיעים ישירות אליכם.</span>
       <span class="en">Your waterpark memories, captured and delivered to you.</span></p>
       <p class="copyright">© 2026 Peocl Ltd.</p>
     </div>
     <div class="footer-col">
-      <h4><span class="he">משפטי</span><span class="en">Legal</span></h4>
-      <a href="/legal/watercap-privacy-policy-he.pdf"><span class="he">מדיניות פרטיות</span><span class="en">Privacy Policy (HE)</span></a>
-      <a href="/legal/watercap-privacy-policy-en.pdf"><span class="he">Privacy Policy (EN)</span><span class="en">Privacy Policy (EN)</span></a>
-      <a href="/legal/watercap-terms-he.pdf"><span class="he">תנאי שימוש</span><span class="en">Terms &amp; Conditions (HE)</span></a>
-      <a href="/legal/watercap-terms-en.pdf"><span class="he">Terms &amp; Conditions (EN)</span><span class="en">Terms &amp; Conditions (EN)</span></a>
+      <h3><span class="he">משפטי</span><span class="en">Legal</span></h3>
+      <a href="/legal/watercap-privacy-policy-he.pdf"><span class="he">מדיניות פרטיות</span><span class="en">Privacy Policy (HE)</span><span class="sr-only"> (PDF)</span></a>
+      <a href="/legal/watercap-privacy-policy-en.pdf" lang="en">Privacy Policy (EN)<span class="sr-only"> (PDF)</span></a>
+      <a href="/legal/watercap-terms-he.pdf"><span class="he">תנאי שימוש</span><span class="en">Terms &amp; Conditions (HE)</span><span class="sr-only"> (PDF)</span></a>
+      <a href="/legal/watercap-terms-en.pdf" lang="en">Terms &amp; Conditions (EN)<span class="sr-only"> (PDF)</span></a>
     </div>
     <div class="footer-col">
-      <h4><span class="he">קישורים</span><span class="en">Links</span></h4>
+      <h3><span class="he">קישורים</span><span class="en">Links</span></h3>
       <a href="https://watercap.peocl.com/app"><span class="he">אפליקציית הרשת</span><span class="en">Web app</span></a>
-      <a href="https://www.waterland.co.il/" target="_blank" rel="noopener">Waterland Eilat</a>
+      <a href="accessibility.html"><span class="he">הצהרת נגישות</span><span class="en">Accessibility statement</span></a>
+      <a href="https://www.waterland.co.il/" target="_blank" rel="noopener">Waterland Eilat<span class="sr-only"><span class="he"> (נפתח בחלון חדש)</span><span class="en"> (opens in a new tab)</span></span></a>
       <a href="mailto:support@peocl.com"><span class="he">תמיכה</span><span class="en">Support</span></a>
     </div>
   </div>
@@ -688,12 +712,26 @@ h2 { position: relative; }
 // inactive language based on body[data-lang].
 (function () {
   const btn = document.getElementById('lang-toggle')
+  const nav = document.getElementById('main-nav')
+
+  // Accessible names and image alt text can't be paired .he/.en spans, so
+  // they're switched here alongside the document title.
+  const LABELS = {
+    he: { nav: 'ניווט ראשי', toggle: 'Switch the site to English' },
+    en: { nav: 'Main navigation', toggle: 'החלפת שפת האתר לעברית' },
+  }
 
   function apply(lang) {
     document.body.dataset.lang = lang
     document.documentElement.lang = lang
     document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr'
     btn.textContent = lang === 'he' ? 'EN' : 'עב'
+    btn.lang = lang === 'he' ? 'en' : 'he'
+    btn.setAttribute('aria-label', LABELS[lang].toggle)
+    nav.setAttribute('aria-label', LABELS[lang].nav)
+    document.querySelectorAll('img[data-alt-he]').forEach((img) => {
+      img.alt = img.dataset['alt' + (lang === 'he' ? 'He' : 'En')]
+    })
     document.title = lang === 'he'
       ? 'WaterCap — הזיכרונות שלכם מווטרלנד, ישר לנייד'
       : 'WaterCap — Your Waterland memories, straight to your phone'
@@ -709,8 +747,12 @@ h2 { position: relative; }
   })
 })()
 
+// Visitors who asked their system for less motion get none of the ambient kind.
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
 // Floating bubbles in the hero
 ;(function () {
+  if (reduceMotion) return
   const hero = document.querySelector('.hero')
   const wrap = document.createElement('div')
   wrap.className = 'bubbles'

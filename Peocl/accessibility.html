@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility statement — Peocl</title>
+  <meta name="description" content="Peocl's accessibility statement: the conformance level of peocl.com, the accessibility features it offers, its known limitations, and how to report an accessibility problem.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%B8%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="a11y.css">
+  <script src="a11y.js"></script>
+  <style>
+    :root {
+      --ink: #0d1b2a;
+      --ink2: #4a6070;
+      --muted: #5d7382;
+      --accent: #0095d9;
+      --accent-text: #0076b3;
+      --accent-dark: #004f8c;
+      --line: #e3edf3;
+      --bg-soft: #f6fafc;
+      --a11y-focus: #004f8c;
+      --a11y-accent: #004f8c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: #fff;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    a { color: var(--accent-text); }
+    a:hover { text-decoration: underline; }
+
+    header { border-bottom: 1px solid var(--line); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+    .logo { font-size: 20px; font-weight: 800; letter-spacing: 0.5px; color: var(--ink); text-decoration: none; }
+    .logo span { color: var(--accent-text); }
+    header nav a { color: var(--ink2); font-size: 14px; font-weight: 600; }
+
+    main { padding: 48px 0 64px; }
+    h1 { font-size: clamp(26px, 4vw, 36px); line-height: 1.2; letter-spacing: -0.5px; }
+    .lede { color: var(--ink2); font-size: 17px; margin-top: 14px; }
+    h2 { font-size: 20px; margin: 36px 0 12px; }
+    h3 { font-size: 16px; margin: 22px 0 6px; }
+    p { margin-bottom: 12px; }
+    ul { margin: 0 0 12px 22px; }
+    li { margin-bottom: 6px; color: var(--ink2); }
+    li strong { color: var(--ink); }
+    .box {
+      background: var(--bg-soft); border: 1px solid var(--line);
+      border-radius: 12px; padding: 20px; margin: 16px 0;
+    }
+    .box p:last-child { margin-bottom: 0; }
+    dl { margin: 0; }
+    dt { font-weight: 700; margin-top: 10px; }
+    dd { margin: 0 0 0 0; color: var(--ink2); }
+    .meta { color: var(--muted); font-size: 14px; margin-top: 36px; }
+    footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 13px; }
+    footer a { color: var(--accent-text); }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+
+<a class="a11y-skip" href="#main">Skip to main content</a>
+
+<header>
+  <div class="container header-inner">
+    <a class="logo" href="index.html">PE<span>O</span>CL</a>
+    <nav aria-label="Main">
+      <a href="index.html">← Back to the site</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container">
+    <h1>Accessibility statement</h1>
+    <p class="lede">
+      Peocl Ltd. wants everyone to be able to use this website, including
+      people who browse with a keyboard, a screen reader, magnification, or
+      other assistive technology.
+    </p>
+
+    <h2>Conformance status</h2>
+    <p>
+      This website (peocl.com) has been built and reviewed against the
+      <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">Web
+      Content Accessibility Guidelines (WCAG) 2.1<span class="sr-only"> (opens in a new tab)</span></a>
+      at level <strong>AA</strong>, which is also the level required by Israeli
+      Standard 5568. We believe the site meets that level, with the exceptions
+      listed under “Known limitations” below.
+    </p>
+
+    <h2>What we have done</h2>
+    <ul>
+      <li>Every page can be operated with the keyboard alone, in a logical order, with a clearly visible focus ring.</li>
+      <li>A “Skip to main content” link is the first thing a keyboard or screen-reader user reaches.</li>
+      <li>Headings, landmarks, lists, and link text are marked up so assistive technology can navigate the structure.</li>
+      <li>Text and interface colours were measured to meet the AA contrast ratios (4.5:1 for body text, 3:1 for large text and interface elements).</li>
+      <li>Decorative icons and illustrations are hidden from screen readers so they don't add noise; meaningful images and videos have text alternatives.</li>
+      <li>Animation respects the operating-system “reduce motion” setting, and can also be switched off from the accessibility menu.</li>
+      <li>The page reflows to a single column and stays usable when text is enlarged or the window is narrow.</li>
+    </ul>
+
+    <h2>The accessibility menu</h2>
+    <p>
+      The button at the bottom corner of every page (the accessibility icon)
+      opens a menu with these options, which are remembered on your next visit:
+    </p>
+    <ul>
+      <li><strong>Text size</strong> — enlarge the text up to 150%.</li>
+      <li><strong>High contrast</strong> — black background, white text, yellow links.</li>
+      <li><strong>Grayscale</strong> — removes colour.</li>
+      <li><strong>Highlight links</strong> — underlines and outlines every link.</li>
+      <li><strong>Readable font</strong> — switches to a plain, evenly spaced typeface.</li>
+      <li><strong>Stop animations</strong> — freezes motion and auto-playing video.</li>
+      <li><strong>Large cursor</strong> — an enlarged mouse pointer.</li>
+      <li><strong>Reset</strong> — returns everything to the default.</li>
+    </ul>
+    <p>
+      The menu opens and closes with the keyboard (Enter or Space to open,
+      Escape to close), and each option reports its on/off state to screen
+      readers.
+    </p>
+
+    <h2>Known limitations</h2>
+    <p>We are aware of the following, and would rather say so than imply otherwise:</p>
+    <ul>
+      <li>
+        <strong>Sample video clips.</strong> The wave clips on the home page are
+        silent footage — they contain no speech and no audio information — so
+        they carry a text description but no captions or audio description.
+      </li>
+      <li>
+        <strong>PDF documents.</strong> The privacy policy and terms are served
+        as PDF files that have not been remediated for full screen-reader
+        accessibility. If you need either document in an accessible format,
+        contact us and we will send it to you as plain text or HTML.
+      </li>
+      <li>
+        <strong>Third-party destinations.</strong> Pages we link to but do not
+        control — the Apple App Store, Google Play, our partners' websites, and
+        payment providers — have their own accessibility levels.
+      </li>
+      <li>
+        <strong>Our apps.</strong> This statement covers this website. The Peocl
+        guest apps (iOS, Android, and the web apps for WaterCap and Surfai) are
+        separate products and are not covered here.
+      </li>
+    </ul>
+
+    <h2>Found a problem? Tell us</h2>
+    <div class="box">
+      <p>
+        If you run into a page, control, or document you cannot use, please tell
+        us what you were trying to do and what got in the way — including the
+        page address and the assistive technology you use, if relevant. We treat
+        these reports as bugs and will get back to you.
+      </p>
+      <dl>
+        <dt>Accessibility coordinator</dt>
+        <dd>Yaron, Peocl Ltd.</dd>
+        <dt>Email</dt>
+        <dd><a href="mailto:yaronshlomo@gmail.com">yaronshlomo@gmail.com</a></dd>
+        <dt>Phone</dt>
+        <dd><a href="tel:+972544606163">054-4606163</a></dd>
+      </dl>
+    </div>
+
+    <p class="meta">
+      Statement published 17 August 2026 · Last reviewed 17 August 2026 ·
+      Applies to <strong>peocl.com</strong>
+    </p>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    © 2026 Peocl Ltd. ·
+    <a href="index.html">Home</a> ·
+    <a href="https://watercap.peocl.com/legal/watercap-privacy-policy-en.pdf">Privacy</a> ·
+    <a href="https://watercap.peocl.com/legal/watercap-terms-en.pdf">Terms</a>
+  </div>
+</footer>
+
+</body>
+</html>

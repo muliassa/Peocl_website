@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>הצהרת נגישות — WaterCap</title>
+  <meta name="description" content="הצהרת הנגישות של WaterCap: רמת הנגישות של האתר, אמצעי הנגישות שבו, המגבלות הידועות ואיך לדווח על בעיית נגישות.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="a11y.css">
+  <script src="a11y.js"></script>
+  <style>
+:root {
+  --blue: #0095d9;
+  --blue-text: #0076b3;
+  --dark: #003d6b;
+  --navy: #0d1b2a;
+  --surface: #eff9ff;
+  --border: #d0eeff;
+  --text2: #4a6070;
+  --muted: #5d7382;
+  --a11y-focus: #003d6b;
+  --a11y-accent: #004f8c;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Heebo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Arial Hebrew", Arial, sans-serif;
+  color: var(--navy);
+  background: #fff;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+body[data-lang="he"] .en { display: none !important; }
+body[data-lang="en"] .he { display: none !important; }
+
+.container { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+a { color: var(--blue-text); }
+a:hover { text-decoration: underline; }
+
+.nav { border-bottom: 1px solid var(--border); }
+.nav-inner { display: flex; align-items: center; gap: 16px; height: 64px; }
+.logo { font-size: 19px; color: var(--dark); text-decoration: none; font-weight: 700; }
+.nav-actions { display: flex; align-items: center; gap: 10px; margin-inline-start: auto; }
+.back { color: var(--text2); font-size: 14px; font-weight: 600; }
+.lang-btn {
+  background: #fff; border: 1.5px solid var(--border); color: var(--text2);
+  border-radius: 10px; padding: 8px 12px; font-weight: 700; font-size: 13px; cursor: pointer;
+}
+.lang-btn:hover { border-color: var(--blue-text); color: var(--blue-text); }
+
+main { padding: 44px 0 64px; }
+h1 { font-size: clamp(26px, 4vw, 34px); font-weight: 800; color: var(--dark); line-height: 1.25; }
+.lede { color: var(--text2); font-size: 17px; margin-top: 14px; }
+h2 { font-size: 20px; font-weight: 800; color: var(--dark); margin: 36px 0 12px; }
+p { margin-bottom: 12px; }
+ul { margin: 0 0 12px 0; padding-inline-start: 22px; }
+li { margin-bottom: 6px; color: var(--text2); }
+li strong { color: var(--navy); }
+.box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px; margin: 16px 0;
+}
+.box p:last-child { margin-bottom: 0; }
+dl { margin: 0; }
+dt { font-weight: 700; margin-top: 10px; }
+dd { margin: 0; color: var(--text2); }
+.meta { color: var(--muted); font-size: 14px; margin-top: 36px; }
+
+.footer { background: #06263f; color: #cfe4f2; padding: 32px 0; margin-top: 8px; }
+.footer a { color: #9fc9e4; }
+.footer p { font-size: 13px; margin: 0; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body data-lang="he">
+
+<a class="a11y-skip" href="#main">
+  <span class="he">דלגו לתוכן הראשי</span><span class="en">Skip to main content</span>
+</a>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="index.html" aria-label="WaterCap"><span aria-hidden="true">🌊</span> WaterCap</a>
+    <div class="nav-actions">
+      <a class="back" href="index.html">
+        <span class="he">→ חזרה לאתר</span><span class="en">← Back to the site</span>
+      </a>
+      <button id="lang-toggle" class="lang-btn" type="button" lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container">
+    <h1><span class="he">הצהרת נגישות</span><span class="en">Accessibility statement</span></h1>
+    <p class="lede">
+      <span class="he">ב־Peocl בע"מ אנחנו רוצים שכל אחד יוכל להשתמש באתר הזה — גם מי שגולש באמצעות מקלדת בלבד, קורא מסך, הגדלת תצוגה או כל טכנולוגיה מסייעת אחרת.</span>
+      <span class="en">At Peocl Ltd. we want everyone to be able to use this website — including people who browse with a keyboard alone, a screen reader, magnification, or any other assistive technology.</span>
+    </p>
+
+    <h2><span class="he">רמת הנגישות</span><span class="en">Conformance status</span></h2>
+    <p>
+      <span class="he">האתר (watercap.peocl.com) נבנה ונבדק לפי הנחיות <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">WCAG 2.1<span class="sr-only"> (נפתח בחלון חדש)</span></a> ברמה <strong>AA</strong> — הרמה הנדרשת גם בתקן הישראלי ת"י 5568. להערכתנו האתר עומד ברמה הזו, למעט הנושאים המפורטים בסעיף «מגבלות ידועות» שלהלן.</span>
+      <span class="en">This website (watercap.peocl.com) was built and reviewed against the <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">WCAG 2.1<span class="sr-only"> (opens in a new tab)</span></a> guidelines at level <strong>AA</strong> — the level also required by Israeli Standard 5568. We believe the site meets that level, apart from the items listed under “Known limitations” below.</span>
+    </p>
+
+    <h2><span class="he">מה עשינו</span><span class="en">What we have done</span></h2>
+    <ul>
+      <li><span class="he">כל האתר ניתן להפעלה במקלדת בלבד, בסדר הגיוני, עם סימון מיקוד (פוקוס) ברור וגלוי.</span>
+        <span class="en">The whole site can be operated with the keyboard alone, in a logical order, with a clearly visible focus indicator.</span></li>
+      <li><span class="he">קישור «דלגו לתוכן הראשי» הוא הדבר הראשון שמשתמשי מקלדת וקורא מסך מגיעים אליו.</span>
+        <span class="en">A “Skip to main content” link is the first thing keyboard and screen-reader users reach.</span></li>
+      <li><span class="he">כותרות, אזורי ניווט, רשימות וטקסט הקישורים מסומנים בצורה שמאפשרת לטכנולוגיה מסייעת לנווט במבנה הדף.</span>
+        <span class="en">Headings, landmarks, lists, and link text are marked up so assistive technology can navigate the page structure.</span></li>
+      <li><span class="he">צבעי הטקסט והממשק נמדדו כדי לעמוד ביחסי הניגודיות של רמה AA (4.5:1 לטקסט רגיל, 3:1 לטקסט גדול ולרכיבי ממשק).</span>
+        <span class="en">Text and interface colours were measured to meet the level AA contrast ratios (4.5:1 for body text, 3:1 for large text and interface components).</span></li>
+      <li><span class="he">אייקונים ואיורים דקורטיביים מוסתרים מקוראי מסך כדי לא להוסיף רעש; לתמונות ולסרטונים בעלי משמעות יש חלופה טקסטואלית, והטקסט החלופי מתחלף יחד עם שפת האתר.</span>
+        <span class="en">Decorative icons and illustrations are hidden from screen readers so they don't add noise; meaningful images and videos have text alternatives, and that alternative text switches with the site language.</span></li>
+      <li><span class="he">האנימציות באתר מכבדות את הגדרת «צמצום תנועה» של מערכת ההפעלה, וניתן גם לכבות אותן מתפריט הנגישות.</span>
+        <span class="en">Animation respects the operating system's “reduce motion” setting, and can also be switched off from the accessibility menu.</span></li>
+      <li><span class="he">הדף נפרס לעמודה אחת ונשאר שמיש גם בהגדלת טקסט ובחלון צר.</span>
+        <span class="en">The page reflows to a single column and stays usable when text is enlarged or the window is narrow.</span></li>
+    </ul>
+
+    <h2><span class="he">תפריט הנגישות</span><span class="en">The accessibility menu</span></h2>
+    <p>
+      <span class="he">הכפתור בפינה התחתונה של כל דף (סמל הנגישות) פותח תפריט עם האפשרויות הבאות, והבחירה שלכם נשמרת גם לביקור הבא:</span>
+      <span class="en">The button in the bottom corner of every page (the accessibility icon) opens a menu with the following options, and your choice is remembered on your next visit:</span>
+    </p>
+    <ul>
+      <li><strong><span class="he">גודל טקסט</span><span class="en">Text size</span></strong> —
+        <span class="he">הגדלת הטקסט עד 150%.</span><span class="en">enlarge the text up to 150%.</span></li>
+      <li><strong><span class="he">ניגודיות גבוהה</span><span class="en">High contrast</span></strong> —
+        <span class="he">רקע שחור, טקסט לבן וקישורים בצהוב.</span><span class="en">black background, white text, yellow links.</span></li>
+      <li><strong><span class="he">גווני אפור</span><span class="en">Grayscale</span></strong> —
+        <span class="he">ביטול הצבע בדף.</span><span class="en">removes colour from the page.</span></li>
+      <li><strong><span class="he">הדגשת קישורים</span><span class="en">Highlight links</span></strong> —
+        <span class="he">קו תחתון ומסגרת לכל קישור.</span><span class="en">underlines and outlines every link.</span></li>
+      <li><strong><span class="he">גופן קריא</span><span class="en">Readable font</span></strong> —
+        <span class="he">מעבר לגופן פשוט עם ריווח אחיד.</span><span class="en">switches to a plain, evenly spaced typeface.</span></li>
+      <li><strong><span class="he">עצירת אנימציות</span><span class="en">Stop animations</span></strong> —
+        <span class="he">הקפאת תנועה וסרטונים שמתנגנים לבד.</span><span class="en">freezes motion and auto-playing video.</span></li>
+      <li><strong><span class="he">סמן עכבר גדול</span><span class="en">Large cursor</span></strong> —
+        <span class="he">סמן עכבר מוגדל.</span><span class="en">an enlarged mouse pointer.</span></li>
+      <li><strong><span class="he">איפוס</span><span class="en">Reset</span></strong> —
+        <span class="he">חזרה להגדרות ברירת המחדל.</span><span class="en">returns everything to the default.</span></li>
+    </ul>
+    <p>
+      <span class="he">התפריט נפתח ונסגר גם במקלדת (Enter או רווח לפתיחה, Escape לסגירה), וכל אפשרות מדווחת לקורא מסך אם היא פעילה או כבויה.</span>
+      <span class="en">The menu opens and closes with the keyboard too (Enter or Space to open, Escape to close), and every option reports its on/off state to screen readers.</span>
+    </p>
+
+    <h2><span class="he">מגבלות ידועות</span><span class="en">Known limitations</span></h2>
+    <p>
+      <span class="he">אלה הדברים שאנחנו מודעים להם, ומעדיפים לומר אותם במפורש:</span>
+      <span class="en">We are aware of the following, and would rather say so than imply otherwise:</span>
+    </p>
+    <ul>
+      <li>
+        <strong><span class="he">מסמכי PDF</span><span class="en">PDF documents</span></strong> —
+        <span class="he">מדיניות הפרטיות ותנאי השימוש מוגשים כקובצי PDF שלא עברו התאמת נגישות מלאה. אם אתם צריכים אותם בפורמט נגיש — פנו אלינו ונשלח אותם כטקסט או כדף HTML.</span>
+        <span class="en">The privacy policy and terms are served as PDF files that have not been remediated for full screen-reader accessibility. If you need them in an accessible format, contact us and we will send them as plain text or an HTML page.</span>
+      </li>
+      <li>
+        <strong><span class="he">אפליקציית הרשת של האורחים</span><span class="en">The guest web app</span></strong> —
+        <span class="he">ההצהרה הזו מתייחסת לדפי אתר זה. אפליקציית הרשת שבה מקשרים את הצמיד וצופים במדיה (watercap.peocl.com/app) היא מוצר נפרד שטרם נבדק ברמה הזו.</span>
+        <span class="en">This statement covers the pages of this website. The web app where you link your wristband and watch your media (watercap.peocl.com/app) is a separate product and has not yet been reviewed to this level.</span>
+      </li>
+      <li>
+        <strong><span class="he">שירותים של צדדים שלישיים</span><span class="en">Third-party services</span></strong> —
+        <span class="he">אתרים ושירותים שאיננו מפעילים — אתר ווטרלנד, חנויות האפליקציות ועמוד התשלום של טרנזילה — כוללים רמות נגישות משל עצמם.</span>
+        <span class="en">Sites and services we do not operate — the Waterland website, the app stores, and Tranzila's payment page — have their own accessibility levels.</span>
+      </li>
+      <li>
+        <strong><span class="he">תמונות הצלם</span><span class="en">Photographer images</span></strong> —
+        <span class="he">התמונות בגלריה מלוות בתיאור טקסטואלי כללי של הסצנה, ולא בתיאור מפורט של כל פרט בתמונה.</span>
+        <span class="en">The gallery photos carry a general text description of the scene rather than a detailed description of every element in the image.</span>
+      </li>
+    </ul>
+
+    <h2><span class="he">נתקלתם בבעיה? ספרו לנו</span><span class="en">Found a problem? Tell us</span></h2>
+    <div class="box">
+      <p>
+        <span class="he">אם יש דף, פקד או מסמך שאתם לא מצליחים להשתמש בו — כתבו לנו מה ניסיתם לעשות ומה עצר אתכם, כולל כתובת הדף והטכנולוגיה המסייעת שאתם משתמשים בה, אם זה רלוונטי. אנחנו מתייחסים לפניות האלה כמו לתקלה בקוד, ונחזור אליכם.</span>
+        <span class="en">If there's a page, control, or document you can't use, tell us what you were trying to do and what stopped you — including the page address and the assistive technology you use, if relevant. We treat these reports like bugs, and we will get back to you.</span>
+      </p>
+      <dl>
+        <dt><span class="he">רכז/ת נגישות</span><span class="en">Accessibility coordinator</span></dt>
+        <dd><span class="he">ירון, Peocl בע"מ</span><span class="en">Yaron, Peocl Ltd.</span></dd>
+        <dt><span class="he">דוא"ל</span><span class="en">Email</span></dt>
+        <!-- dir="ltr" so the address doesn't reorder inside the RTL page. -->
+        <dd><a href="mailto:yaronshlomo@gmail.com" dir="ltr">yaronshlomo@gmail.com</a></dd>
+        <dt><span class="he">טלפון</span><span class="en">Phone</span></dt>
+        <!-- dir="ltr" so the number doesn't reorder inside the RTL page. -->
+        <dd><a href="tel:+972544606163" dir="ltr">054-4606163</a></dd>
+      </dl>
+    </div>
+
+    <p class="meta">
+      <span class="he">ההצהרה פורסמה ב־17 באוגוסט 2026 · נבדקה לאחרונה ב־17 באוגוסט 2026 · חלה על <strong>watercap.peocl.com</strong></span>
+      <span class="en">Statement published 17 August 2026 · Last reviewed 17 August 2026 · Applies to <strong>watercap.peocl.com</strong></span>
+    </p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>
+      © 2026 Peocl Ltd. ·
+      <a href="index.html"><span class="he">דף הבית</span><span class="en">Home</span></a> ·
+      <a href="/legal/watercap-privacy-policy-he.pdf"><span class="he">מדיניות פרטיות</span><span class="en">Privacy Policy (HE)</span><span class="sr-only"> (PDF)</span></a> ·
+      <a href="/legal/watercap-terms-he.pdf"><span class="he">תנאי שימוש</span><span class="en">Terms (HE)</span><span class="sr-only"> (PDF)</span></a>
+    </p>
+  </div>
+</footer>
+
+<script>
+// Same Hebrew/English toggle as the home page, so the choice carries across.
+(function () {
+  const btn = document.getElementById('lang-toggle')
+
+  const LABELS = {
+    he: { toggle: 'Switch the site to English' },
+    en: { toggle: 'החלפת שפת האתר לעברית' },
+  }
+
+  function apply(lang) {
+    document.body.dataset.lang = lang
+    document.documentElement.lang = lang
+    document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr'
+    btn.textContent = lang === 'he' ? 'EN' : 'עב'
+    btn.lang = lang === 'he' ? 'en' : 'he'
+    btn.setAttribute('aria-label', LABELS[lang].toggle)
+    document.title = lang === 'he'
+      ? 'הצהרת נגישות — WaterCap'
+      : 'Accessibility statement — WaterCap'
+    try { localStorage.setItem('watercap.lang', lang) } catch { /* private mode */ }
+  }
+
+  let lang = 'he'
+  try { lang = localStorage.getItem('watercap.lang') || 'he' } catch { /* private mode */ }
+  apply(lang)
+
+  btn.addEventListener('click', () => {
+    apply(document.body.dataset.lang === 'he' ? 'en' : 'he')
+  })
+})()
+</script>
+</body>
+</html>
